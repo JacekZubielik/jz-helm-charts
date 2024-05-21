@@ -1,0 +1,67 @@
+replicaCount: 1
+
+image:
+  repository: nightshift2k/binance-proxy
+  pullPolicy: IfNotPresent
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+timezone: UTC
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+  {}
+  # fsGroup: 2000
+
+securityContext:
+  {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  externalIPs: []
+  loadBalancerIP: ""
+
+  ports:
+    - port: 8090
+      targetPort: 8090
+      protocol: TCP
+      name: port-spot
+    - port: 8091
+      targetPort: 8091
+      protocol: TCP
+      name: port-futures
+
+resources:
+  limits:
+    memory: 0.2Gi
+    cpu: 250m
+  requests:
+    memory: 0.1Gi
+    cpu: 150m
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  averageCPUUtilizationPercentage: 50
+  averageMemoryUtilizationPercentage: 50
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
