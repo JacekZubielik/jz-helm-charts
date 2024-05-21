@@ -5,7 +5,7 @@ remote: origin
 chart-dirs:
   - charts
 chart-repos:
-  - jz-helm-charts=https://github.com/JacekZubielik/jz-helm-charts
+  - jz-helm-charts=https://github.com/jacekzubielik/jz-helm-charts
 helm-extra-args: "--timeout 600s"  
 validate-chart-schema: false
 validate-maintainers: true

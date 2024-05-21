@@ -41,7 +41,7 @@
         #     fi
 
 
-        - name: List changed charts
+        - name: Run chart-testing (list-changed)
           id: list-changed
           run: |
             ## If executed with debug this won't work anymore.
