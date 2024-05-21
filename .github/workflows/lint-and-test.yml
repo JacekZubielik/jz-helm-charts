@@ -32,25 +32,25 @@
           id: lint
           uses: helm/chart-testing-action@v2.6.1
 
-        - name: Run chart-testing (list-changed)
-          id: list-changed
-          run: |
-            changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
-            if [[ -n "$changed" ]]; then
-              echo "changed=true" >> "$GITHUB_OUTPUT"
-            fi
-
-
-        # - name: List changed charts
+        # - name: Run chart-testing (list-changed)
         #   id: list-changed
         #   run: |
-        #     ## If executed with debug this won't work anymore.
-        #     changed=$(ct --config ./.github/configs/ct-lint.yaml list-changed)
-        #     charts=$(echo "$changed" | tr '\n' ' ' | xargs)
+        #     changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
         #     if [[ -n "$changed" ]]; then
-        #       echo "::set-output name=changed::true"
-        #       echo "::set-output name=changed_charts::$charts"
+        #       echo "changed=true" >> "$GITHUB_OUTPUT"
         #     fi
+
+
+        - name: List changed charts
+          id: list-changed
+          run: |
+            ## If executed with debug this won't work anymore.
+            changed=$(ct --config ./.github/configs/ct-lint.yaml list-changed)
+            charts=$(echo "$changed" | tr '\n' ' ' | xargs)
+            if [[ -n "$changed" ]]; then
+              echo "::set-output name=changed::true"
+              echo "::set-output name=changed_charts::$charts"
+            fi
 
         - name: Run chart-testing (lint)
           run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
