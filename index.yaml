@@ -41,4 +41,25 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/binance-proxy-0.0.2/binance-proxy-0.0.2.tgz
     version: 0.0.2
-generated: "2024-05-21T21:14:05.899090706Z"
+  cadvisor:
+  - apiVersion: v2
+    appVersion: v0.49.1
+    created: "2024-05-21T21:49:15.445045073Z"
+    description: Cadvisor - Container Advisor
+    digest: ee8169040eafbe22aeae11d80e1c8ef6f71623ee0ec80818bc66514a8e6a83b7
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/cadvisor
+    keywords:
+    - prometheus
+    - cadvisor
+    - monitoring
+    maintainers:
+    - email: jack.zu@protonmail.com
+      name: Jacek Zubielik
+    name: cadvisor
+    sources:
+    - https://github.com/google/cadvisor
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/cadvisor-0.0.1/cadvisor-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-05-21T21:49:15.44505417Z"
