@@ -1,0 +1,17 @@
+apiVersion: v2
+appVersion: v0.49.1
+description: Cadvisor - Container Advisor
+name: cadvisor
+version: 0.0.1
+type: application
+keywords:
+- prometheus
+- cadvisor
+- monitoring
+home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/cadvisor
+icon: 
+sources:
+- https://github.com/google/cadvisor
+maintainers:
+- name: Jacek Zubielik
+  email: jack.zu@protonmail.com
