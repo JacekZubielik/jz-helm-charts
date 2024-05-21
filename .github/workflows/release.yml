@@ -42,10 +42,10 @@ jobs:
             helm dependency list $dir 2> /dev/null | tail +2 | head -n -1 | awk '{ print "helm repo add " $1 " " $3 }' | while read cmd; do $cmd; done
           done
 
-      ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
-      - name: Fetch current Chart Index
-        run: |
-          git checkout origin/gh-pages index.yaml
+      # ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
+      # - name: Fetch current Chart Index
+      #   run: |
+      #     git checkout origin/gh-pages index.yaml
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
