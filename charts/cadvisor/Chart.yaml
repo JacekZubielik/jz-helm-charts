@@ -9,7 +9,6 @@ keywords:
 - cadvisor
 - monitoring
 home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/cadvisor
-# icon: 
 sources:
 - https://github.com/google/cadvisor
 maintainers:
