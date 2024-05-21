@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 1.2.4
 description: Binance websocket proxy
 name: binance-proxy
-version: 0.0.1
+version: 0.0.2
 type: application
 keywords:
   - websocket
