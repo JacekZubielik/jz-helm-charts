@@ -3,6 +3,26 @@ entries:
   binance-proxy:
   - apiVersion: v2
     appVersion: 1.2.4
+    created: "2024-05-21T21:14:05.899078714Z"
+    description: Binance websocket proxy
+    digest: 3a1f6d328d01db46aa9468ffe663e7b17184593c413f795326e5235365e67451
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/binance-proxy
+    keywords:
+    - websocket
+    - proxy
+    - binance
+    maintainers:
+    - email: jack.zu@protonmail.com
+      name: Jacek Zubielik
+    name: binance-proxy
+    sources:
+    - https://github.com/nightshift2k/binance-proxy
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/binance-proxy-0.0.3/binance-proxy-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 1.2.4
     created: "2024-05-21T20:49:12.983193297Z"
     description: Binance websocket proxy
     digest: 9e1742cb35f6e5ab0e3f4e6b774c9deee66c4d9f5e5184e840dfcfe768d2058b
@@ -21,4 +41,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/binance-proxy-0.0.2/binance-proxy-0.0.2.tgz
     version: 0.0.2
-generated: "2024-05-21T20:49:12.983203385Z"
+generated: "2024-05-21T21:14:05.899090706Z"
