@@ -255,6 +255,25 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
+  uptime-kuma:
+  - apiVersion: v2
+    appVersion: 1.23.11
+    created: "2024-05-22T14:06:52.408498487Z"
+    description: Monitoring tool
+    digest: 63c2b3abfc06d9f726a0e9b3412f803fa2f9976a2c58acf68333de09937cb88a
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/uptime-kuma
+    icon: https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.png
+    keywords:
+    - uptime-kuma
+    maintainers:
+    - name: jacekzubielik
+    name: uptime-kuma
+    sources:
+    - https://github.com/louislam/uptime-kuma
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/uptime-kuma-0.0.1/uptime-kuma-0.0.1.tgz
+    version: 0.0.1
   zigbee2mqtt:
   - apiVersion: v2
     appVersion: 1.35.3
@@ -276,4 +295,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T13:56:26.382451042Z"
+generated: "2024-05-22T14:06:52.40852184Z"
