@@ -157,6 +157,26 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/external-dns-0.0.1/external-dns-0.0.1.tgz
     version: 0.0.1
+  home-assistant:
+  - apiVersion: v2
+    appVersion: 2024.4.0
+    created: "2024-05-22T13:51:15.403204179Z"
+    description: Home Assistant automation
+    digest: 9f63d1a4d628b91ba0a4167080ee3d87e4d8345309aebe40f3198c68d22b0ab9
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/home-assistant
+    icon: https://raw.githubusercontent.com/home-assistant/assets/master/misc/logo-icon_template.png
+    keywords:
+    - home-assistant
+    - automation
+    maintainers:
+    - name: jacekzubielik
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/home-assistant-0.0.1/home-assistant-0.0.1.tgz
+    version: 0.0.1
   lms:
   - apiVersion: v2
     appVersion: 9.0.0
@@ -235,4 +255,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T13:14:30.503516019Z"
+generated: "2024-05-22T13:51:15.95690527Z"
