@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 1.2.4
 description: Binance websocket proxy
 name: binance-proxy
-version: 0.0.3
+version: 0.0.4
 type: application
 keywords:
   - websocket
@@ -13,5 +13,4 @@ home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/binance
 sources:
   - https://github.com/nightshift2k/binance-proxy
 maintainers:
-  - name: Jacek Zubielik
-    email: jack.zu@protonmail.com
+  - name: jacekzubielik
