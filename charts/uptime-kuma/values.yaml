@@ -32,7 +32,7 @@ extraEnv:
   - name: "UPTIME_KUMA_PORT"
     value: "3001"
 
-extraEnvSecrets:
+extraEnvSecrets: {}
   # This will set ${MQTT_PASSWORD} to the 'password' key from the 'mqtt' secret
   # MQTT_PASSWORD:
   #   secret: mqtt
