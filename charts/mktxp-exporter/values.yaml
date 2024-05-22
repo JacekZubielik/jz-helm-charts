@@ -18,8 +18,8 @@ updateStrategy:
 serviceAccount:
   create: false
   annotations: {}
-#   automountServiceAccountToken: false
-# podAnnotations: {}
+  automountServiceAccountToken: false
+podAnnotations: {}
 
 podSecurityContext:
   runAsUser: 100
@@ -29,7 +29,7 @@ securityContext:
   fsGroup: 101
 
 service:
-  port: "49090"
+  port: 49090
 
 resources: {}
 nodeSelector: {}
@@ -43,6 +43,7 @@ persistence:
 monitoring:
   enabled: false
   serviceMonitor:
+    annotations: {}
     enabled: false
     interval: 60s
     labels: {}
