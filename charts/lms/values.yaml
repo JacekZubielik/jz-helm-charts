@@ -64,11 +64,11 @@ service:
   externalTrafficPolicy: {}
   loadBalancerSourceRanges: []
   publishNotReadyAddresses: false
-  httpPort:      "9000"
-  cliPort:       "9090"
-  controlPort:   "3483"
+  httpPort: "9000"
+  cliPort: "9090"
+  controlPort: "3483"
   discoveryPort: "3483"
-  metricsPort:   "9100"
+  metricsPort: "9100"
 
 monitoring:
   enabled: false
@@ -76,7 +76,7 @@ monitoring:
     enabled: false
     labels: {}
     honorLabels: true
-    interval:      60s
+    interval: 60s
     selector: {}
     namespace: monitoring
     scrapeTimeout: 10s
@@ -103,18 +103,18 @@ monitoring:
 livenessProbe:
   enabled: true
   scheme: HTTP
-  periodSeconds:       60
-  timeoutSeconds:      10
-  successThreshold:    1
-  failureThreshold:    6
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
   initialDelaySeconds: 30
 readinessProbe:
   enabled: true
   scheme: HTTP
-  periodSeconds:       60
-  timeoutSeconds:      10
-  successThreshold:    1
-  failureThreshold:    6
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
   initialDelaySeconds: 30
 
 ingress:
