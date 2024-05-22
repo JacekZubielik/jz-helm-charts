@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 2024.2.1
 description: ESPHome
 name: esphome
-version: 0.0.2
+version: 0.0.3
 keywords:
 - esphome
 type: application
