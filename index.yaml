@@ -100,4 +100,24 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/cadvisor-0.0.1/cadvisor-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T11:13:06.376921488Z"
+  mosquitto:
+  - apiVersion: v2
+    appVersion: 2.0.18
+    created: "2024-05-22T11:51:03.709496837Z"
+    description: Eclipse Mosquitto MQTT
+    digest: 64a7cf92f302e55046dfdcbd4a52360697847312ad1dd061fa322afd4f3926e1
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/eclipse-mosquitto
+    icon: https://raw.githubusercontent.com/eclipse/mosquitto/master/logo/mosquitto-logo-min.svg
+    keywords:
+    - mqtt
+    - mosquitto
+    maintainers:
+    - name: jacekzubielik
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-05-22T11:51:03.709516283Z"
