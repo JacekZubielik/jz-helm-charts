@@ -137,6 +137,26 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/esphome-0.0.1/esphome-0.0.1.tgz
     version: 0.0.1
+  external-dns:
+  - apiVersion: v2
+    appVersion: 0.14.0
+    created: "2024-05-22T13:14:30.503496061Z"
+    description: ExternalDNS - Kubernetes Services and Ingresses with DNS providers.
+    digest: c92ef6844b6257a4affe82e08438d1d59fdb2511ec64657c473e1fd4e3cd289a
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/external-dns
+    icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+    keywords:
+    - external-dns
+    - dns
+    maintainers:
+    - name: jacekzubielik
+    name: external-dns
+    sources:
+    - https://github.com/kubernetes-sigs/external-dns/
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/external-dns-0.0.1/external-dns-0.0.1.tgz
+    version: 0.0.1
   lms:
   - apiVersion: v2
     appVersion: 9.0.0
@@ -215,4 +235,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T12:57:02.453246687Z"
+generated: "2024-05-22T13:14:30.503516019Z"
