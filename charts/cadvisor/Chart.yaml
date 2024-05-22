@@ -12,5 +12,4 @@ home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/cadviso
 sources:
 - https://github.com/google/cadvisor
 maintainers:
-- name: Jacek Zubielik
-  email: jack.zu@protonmail.com
+  - name: jacekzubielik
