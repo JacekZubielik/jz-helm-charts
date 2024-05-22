@@ -32,7 +32,7 @@ service:
   port: 49090
 
 resources: {}
-nodeSelector:  {}
+nodeSelector: {}
 tolerations: []
 affinity: {}
 
