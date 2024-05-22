@@ -10,8 +10,6 @@ replicas: 1
 strategyType: RollingUpdate
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
 
 podAnnotations: {}
 podLabels: {}
@@ -47,8 +45,8 @@ service:
   externalTrafficPolicy: {}
   loadBalancerSourceRanges: []
   publishNotReadyAddresses: false
-  mqttPort:    1883
-  mqttsPort:   8883
+  mqttPort: 1883
+  mqttsPort: 8883
   metricsPort: 9100
 monitoring:
   enabled: false
@@ -59,7 +57,7 @@ monitoring:
       prometheus.io/port: 9100
     labels: {}
     honorLabels: true
-    interval:      60s
+    interval: 60s
     selector: {}
     scrapeTimeout: 10s
     scheme: http
@@ -86,18 +84,18 @@ monitoring:
 livenessProbe:
   enabled: true
   scheme: HTTP
-  periodSeconds:       60
-  timeoutSeconds:      10
-  successThreshold:    1
-  failureThreshold:    6
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
   initialDelaySeconds: 30
 readinessProbe:
   enabled: true
   scheme: HTTP
-  periodSeconds:       60
-  timeoutSeconds:      10
-  successThreshold:    1
-  failureThreshold:    6
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
   initialDelaySeconds: 30
 ingress:
   enabled: false
