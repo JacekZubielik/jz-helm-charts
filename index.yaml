@@ -100,6 +100,25 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/cadvisor-0.0.1/cadvisor-0.0.1.tgz
     version: 0.0.1
+  esphome:
+  - apiVersion: v2
+    appVersion: 2024.2.1
+    created: "2024-05-22T12:22:44.367938989Z"
+    description: ESPHome
+    digest: 3a5421bf725cc513da4118170751d7c9fd1519212d237a2f0cac6c395245db70
+    home: https://github.com/JacekZubielik/helm-charts/tree/master/charts/esphome
+    icon: https://esphome.io/_images/logo-text.svg
+    keywords:
+    - esphome
+    maintainers:
+    - name: jacekzubielik
+    name: esphome
+    sources:
+    - https://github.com/esphome/esphome
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/esphome-0.0.1/esphome-0.0.1.tgz
+    version: 0.0.1
   lms:
   - apiVersion: v2
     appVersion: 9.0.0
@@ -140,4 +159,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T12:10:31.41759288Z"
+generated: "2024-05-22T12:22:44.367971909Z"
