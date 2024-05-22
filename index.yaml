@@ -103,6 +103,24 @@ entries:
   esphome:
   - apiVersion: v2
     appVersion: 2024.2.1
+    created: "2024-05-22T12:40:59.765917322Z"
+    description: ESPHome
+    digest: 90294444c858ba6d8d31bd6dfce8bfcdd38cc5ff76de6d59bc7c40ca8679c630
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/esphome
+    icon: https://esphome.io/_images/logo-text.svg
+    keywords:
+    - esphome
+    maintainers:
+    - name: jacekzubielik
+    name: esphome
+    sources:
+    - https://github.com/esphome/esphome
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/esphome-0.0.2/esphome-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 2024.2.1
     created: "2024-05-22T12:22:44.367938989Z"
     description: ESPHome
     digest: 3a5421bf725cc513da4118170751d7c9fd1519212d237a2f0cac6c395245db70
@@ -178,4 +196,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T12:35:30.284054318Z"
+generated: "2024-05-22T12:40:59.765942248Z"
