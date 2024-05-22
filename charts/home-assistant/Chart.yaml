@@ -1,0 +1,16 @@
+---
+apiVersion: v2
+appVersion: 2024.4.0
+description: Home Assistant automation
+name: home-assistant
+version: 0.0.1
+keywords:
+  - home-assistant
+  - automation
+type: application
+home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/home-assistant
+icon: https://raw.githubusercontent.com/home-assistant/assets/master/misc/logo-icon_template.png
+sources:
+  - https://github.com/home-assistant/home-assistant
+maintainers:
+  - name: jacekzubielik
