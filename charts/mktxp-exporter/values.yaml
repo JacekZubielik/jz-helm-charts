@@ -43,7 +43,6 @@ persistence:
 monitoring:
   enabled: false
   serviceMonitor:
-    annotations: {}
     enabled: false
     interval: 60s
     labels: {}
