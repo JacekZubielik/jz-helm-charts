@@ -32,23 +32,13 @@ service:
   port: 49090
 
 resources: {}
-
-nodeSelector:
-  kubernetes.io/hostname: {}
-
+nodeSelector:  {}
 tolerations: []
-
 affinity: {}
 
 persistence:
   storageClassName: local-path
   size: 1Gi
-
-# ingress:
-#   enabled: false
-#   ingressClassName: traefik
-#   domainName: {}
-#   secretName: cluster-tls
 
 monitoring:
   enabled: false
