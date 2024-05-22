@@ -255,4 +255,25 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T13:51:15.95690527Z"
+  zigbee2mqtt:
+  - apiVersion: v2
+    appVersion: 1.35.3
+    created: "2024-05-22T13:56:26.38242309Z"
+    description: Zigbee Bridge via MQTT
+    digest: 5c8e01b09f40f71cda00410e373c6b82b5e6c3bee28667bb8aebc855b4269cb3
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/zigbee2mqtt
+    icon: https://www.zigbee2mqtt.io/images/logo.png
+    keywords:
+    - zigbee2mqtt
+    - zigbee
+    - mqtt
+    maintainers:
+    - name: jacekzubielik
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
+    version: 0.0.1
+generated: "2024-05-22T13:56:26.382451042Z"
