@@ -154,7 +154,7 @@ tolerations: []
 persistence:
   enabled: false
   configstorage:
-    hostPath:  {}
+    hostPath: {}
   pvc:
     enabled: false
     # accessModes:
