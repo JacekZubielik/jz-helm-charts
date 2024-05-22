@@ -1,0 +1,15 @@
+---
+apiVersion: v2
+appVersion: 2024.2.1
+description: ESPHome
+name: esphome
+version: 0.0.1
+keywords:
+- esphome
+type: application
+home: https://github.com/JacekZubielik/helm-charts/tree/master/charts/esphome
+icon: https://esphome.io/_images/logo-text.svg
+sources:
+- https://github.com/esphome/esphome
+maintainers:
+  - name: jacekzubielik
