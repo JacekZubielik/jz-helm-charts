@@ -255,6 +255,27 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mosquitto-0.0.1/mosquitto-0.0.1.tgz
     version: 0.0.1
+  syncthing:
+  - apiVersion: v2
+    appVersion: 1.27.4
+    created: "2024-05-22T14:18:12.946749752Z"
+    description: Syncthing Continuous File Synchronization
+    digest: 8df876fc6dee708a09b25eeadbf357f1173dc09e536b5f3aefe107b563467321
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/syncthing
+    icon: https://raw.githubusercontent.com/syncthing/syncthing/main/assets/logo-only.svg
+    keywords:
+    - synchronization
+    - peer-to-peer
+    - p2p
+    maintainers:
+    - name: jacekzubielik
+    name: syncthing
+    sources:
+    - https://github.com/syncthing/syncthing
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/syncthing-0.0.1/syncthing-0.0.1.tgz
+    version: 0.0.1
   uptime-kuma:
   - apiVersion: v2
     appVersion: 1.23.11
@@ -295,4 +316,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T14:06:52.40852184Z"
+generated: "2024-05-22T14:18:12.946776Z"
