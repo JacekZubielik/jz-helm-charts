@@ -1,0 +1,17 @@
+apiVersion: v2
+appVersion: 0.14.0
+description: ExternalDNS - Kubernetes Services and Ingresses with DNS providers.
+name: external-dns
+version: 0.0.1
+type: application
+keywords:
+  - external-dns
+  - dns
+home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/external-dns
+icon: https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png
+sources:
+- https://github.com/kubernetes-sigs/external-dns/
+maintainers:
+  - name: jacekzubielik
+
+
