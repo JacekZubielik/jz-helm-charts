@@ -1,0 +1,151 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name:  {{ template "app.fullname" . }}
+  labels:
+  {{- include "app.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit:  {{ .Values.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+    {{- include "app.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "app.fullname" . }}
+  updateStrategy: {{ toYaml .Values.updateStrategy | nindent 4 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+      {{- include "app.selectorLabels" . | nindent 8 }}
+      {{- if .Values.podLabels }}
+      {{- toYaml .Values.podLabels | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.image.PullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
+      shareProcessNamespace: {{ .Values.sidecarSingleProcessNamespace }}
+      serviceAccountName: {{ include "app.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
+      {{- if .Values.hostNetwork }}
+      hostNetwork: {{ .Values.hostNetwork }}
+      dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
+      containers:
+      - name: {{ .Chart.Name }}
+        securityContext:
+          {{- toYaml .Values.podSecurityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+{{/* Common labels 
+        - name: TZ
+          value: {{ .Values.timezone }}
+*/}}
+        - name: ZIGBEE2MQTT_DATA
+          value: "/data"
+        {{- if .Values.debug }}
+        - name: DEBUG
+          value: {{ .Values.debug }}
+        {{- end }}
+        {{- range $key, $value := .Values.extraEnv }}
+        - name: {{ $key | }}
+          value: {{ $value | }}
+        {{- end }}
+        {{- range $name, $opts := .Values.extraEnvSecrets }}
+        - name: {{ $name }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $opts.secret }}
+              key: {{ $opts.key }}
+        {{- end }}
+        envFrom:
+        {{- range .Values.extraSecretForEnvFrom }}
+          - secretRef:
+              name: {{ . }}
+        {{- end }}
+        resources:
+        {{- toYaml .Values.resources | nindent 12 }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.service.httpPort }}
+          protocol: TCP
+        - name: metrics
+          containerPort: {{ .Values.service.metricsPort }}
+          protocol: TCP
+        {{- if .Values.livenessProbe.enabled }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+            scheme: {{ .Values.livenessProbe.scheme }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+        {{- end }}
+        {{- if .Values.readinessProbe.enabled }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+            scheme: {{ .Values.readinessProbe.scheme }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+        {{- end }}
+        volumeMounts:
+        - name: config-storage
+          mountPath: /data
+        {{- range .Values.hostMounts }}
+        {{- if .mountPath }}
+        - mountPath: {{ .mountPath }}
+        {{- else }}
+        - mountPath: {{ .hostPath }}
+        {{- end }}
+          name: {{ .name }}
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: config-storage
+        {{- if .Values.persistence.enabled }}
+        {{- if .Values.persistence.configstorage.hostPath }}
+          hostPath:
+            path: {{.Values.persistence.configstorage.hostPath}}
+        {{- else }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
+        {{- end }}
+        {{- else }}
+          emptyDir: {}
+        {{ end }}
+        {{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
+        - name: config-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+        {{- end }}
+        {{- range .Values.hostMounts }}
+        - name: {{ .name }}
+          hostPath:
+            path: {{.hostPath}}
+        {{- end }}
