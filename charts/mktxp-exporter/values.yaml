@@ -29,6 +29,9 @@ securityContext:
   fsGroup: 101
 
 service:
+  annotations: {}
+    # prometheus.io/port: 49090
+    # prometheus.io/scrape: "true"
   port: 49090
 
 resources: {}
