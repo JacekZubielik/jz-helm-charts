@@ -13,8 +13,6 @@ fullnameOverride: ""
 revisionHistoryLimit: 4
 hostNetwork: false
 
-# strategyType: RollingUpdate
-
 replicas: 1
 updateStrategy:
   type: RollingUpdate
@@ -30,12 +28,11 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 
-extraEnv:
-  {}
-#   - name: "UPTIME_KUMA_PORT"
-#     value: "3001"
+extraEnv: {}
+  # - name: "UPTIME_KUMA_PORT"
+  #   value: "3001"
 
-extraEnvSecrets:
+extraEnvSecrets: {}
   # This will set ${MQTT_PASSWORD} to the 'password' key from the 'mqtt' secret
   # MQTT_PASSWORD:
   #   secret: mqtt
@@ -105,7 +102,7 @@ monitoring:
       # optional:
 
 livenessProbe:
-  enabled: true
+  enabled: false
   scheme: HTTP
   periodSeconds: 60
   timeoutSeconds: 10
@@ -113,7 +110,7 @@ livenessProbe:
   failureThreshold: 6
   initialDelaySeconds: 30
 readinessProbe:
-  enabled: true
+  enabled: false
   scheme: HTTP
   periodSeconds: 60
   timeoutSeconds: 10
@@ -123,34 +120,23 @@ readinessProbe:
 
 ingress:
   enabled: false
-  # className: ""
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-    nginx.ingress.kubernetes.io/server-snippets: |
-      location / {
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-Host $http_host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header Host $host;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   Upgrade $http_upgrade;
-        proxy_cache_bypass $http_upgrade;
-      }
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  labels: {}
+  path: /
   hosts:
-    - host: uptime-kuma.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    []
-    # - secretName: letsencrypt-staging
-    #   hosts:
-    #     - uptime-kuma.local
+    - chart-example.local
+  ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
+  extraPaths: []
+  # - path: /*
+  #   backend:
+  #     serviceName: ssl-redirect
+  #     servicePort: use-annotation
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources: {}
 #   requests:
@@ -160,15 +146,14 @@ resources: {}
 #     cpu: "1"
 #     memory: "512Mi"
 
-nodeSelector:
-  kubernetes.io/hostname: {}
+nodeSelector: {}
 affinity: {}
 tolerations: []
 
 persistence:
   enabled: false
   configstorage:
-    hostPath: /mnt/volume-0/apps/uptime-kuma
+    hostPath: {}
   pvc:
     enabled: false
     # accessModes:
