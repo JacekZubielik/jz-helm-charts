@@ -15,11 +15,11 @@ updateStrategy:
   #   maxUnavailable: 0
   #   maxSurge: 1
 
-# serviceAccount:
-#   create: false
-#   annotations: {}
-#   automountServiceAccountToken: false
-# podAnnotations: {}
+serviceAccount:
+  create: false
+  annotations: {}
+  automountServiceAccountToken: false
+podAnnotations: {}
 
 podSecurityContext:
   runAsUser: 100
@@ -32,27 +32,18 @@ service:
   port: 49090
 
 resources: {}
-
-nodeSelector:
-  kubernetes.io/hostname: {}
-
+nodeSelector: {}
 tolerations: []
-
 affinity: {}
 
 persistence:
   storageClassName: local-path
   size: 1Gi
 
-# ingress:
-#   enabled: false
-#   ingressClassName: traefik
-#   domainName: {}
-#   secretName: cluster-tls
-
 monitoring:
   enabled: false
   serviceMonitor:
+    annotations: {}
     enabled: false
     interval: 60s
     labels: {}
