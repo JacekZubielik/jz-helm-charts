@@ -1,0 +1,21 @@
+{{- if and .Values.persistence.pvc.enabled (not .Values.persistence.configstorage.hostPath) }}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "lms.fullname" . }}
+  labels:
+    {{- include "lms.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.pvc.size }}
+  {{- if .Values.persistence.pvc.storageClass }}
+  {{- if (eq "-" .Values.persistence.pvc.storageClass) }}
+  storageClassName: ""
+  {{- else }}
+  storageClassName: "{{ .Values.persistence.pvc.storageClass }}"
+  {{- end }}
+  {{- end }}
+{{- end }}

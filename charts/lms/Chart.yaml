@@ -1,0 +1,16 @@
+---
+apiVersion: v2
+appVersion: 9.0.0
+description: Logitech Media Server
+name: lms
+version: 0.0.1
+keywords:
+  - lms
+  - logitechmediaserver
+type: application
+home: https://github.com/JacekZubielik/helm-charts/tree/master/charts/lms
+icon: https://truecharts.org/img/hotlink-ok/chart-icons/logitech-media-server.png
+sources:
+  - https://hub.docker.com/r/lmscommunity/logitechmediaserver
+maintainers:
+  - name: jacekzubielik
