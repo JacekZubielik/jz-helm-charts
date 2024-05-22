@@ -1,0 +1,15 @@
+---
+apiVersion: v2
+appVersion: 1.23.11
+description: Monitoring tool
+name: uptime-kuma
+version: 0.0.1
+keywords:
+- uptime-kuma
+type: application
+home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/uptime-kuma
+icon: https://raw.githubusercontent.com/louislam/uptime-kuma/master/public/icon.png
+sources:
+- https://github.com/louislam/uptime-kuma
+maintainers:
+  - name: jacekzubielik
