@@ -13,5 +13,3 @@ sources:
 - https://github.com/kubernetes-sigs/external-dns/
 maintainers:
   - name: jacekzubielik
-
-
