@@ -15,9 +15,9 @@ updateStrategy:
   #   maxUnavailable: 0
   #   maxSurge: 1
 
-# serviceAccount:
-#   create: false
-#   annotations: {}
+serviceAccount:
+  create: false
+  annotations: {}
 #   automountServiceAccountToken: false
 # podAnnotations: {}
 
@@ -29,7 +29,7 @@ securityContext:
   fsGroup: 101
 
 service:
-  port: 49090
+  port: "49090"
 
 resources: {}
 nodeSelector: {}
