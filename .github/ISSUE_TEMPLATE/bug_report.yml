@@ -15,7 +15,7 @@ body:
     attributes:
       label: Name and Version
       description: Name and version of the affected chart
-      placeholder: jz-helm-charts/binance-proxy 0.0.1
+      placeholder: binance-proxy 0.0.1
     validations:
       required: true
   - type: dropdown
