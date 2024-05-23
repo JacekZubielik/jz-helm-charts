@@ -275,6 +275,24 @@ entries:
   mktxp-exporter:
   - apiVersion: v2
     appVersion: gha-7614306238
+    created: "2024-05-23T10:50:33.45697947Z"
+    description: Mikrotik MKTXP Prometheus exporter
+    digest: 8a3fe7555dddff158d037bef3a27be75c024b496eb2eb12c2cdecea26c777549
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/mikrotik-exporter
+    keywords:
+    - mikrotik-exporter
+    - mktxp-exporter
+    maintainers:
+    - name: jacekzubielik
+    name: mktxp-exporter
+    sources:
+    - https://github.com/akpw/mktxp
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/mktxp-exporter-0.0.4/mktxp-exporter-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: gha-7614306238
     created: "2024-05-22T21:00:44.809542956Z"
     description: Mikrotik MKTXP Prometheus exporter
     digest: 20f522802faf3971321065725d445744e3984647f118ce6fda983b8432a17869
@@ -444,4 +462,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-22T21:48:06.751639942Z"
+generated: "2024-05-23T10:50:33.457028913Z"
