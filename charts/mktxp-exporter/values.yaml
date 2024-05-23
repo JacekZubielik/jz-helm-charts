@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/akpw/mktxp
-  pullPolicy: IfNotPresent
   tag: ""
+  pullPolicy: IfNotPresent
 
 imagePullSecrets: []
 nameOverride: ""
@@ -35,33 +35,29 @@ service:
   port: 49090
 
 resources: {}
+#   requests:
+#     cpu: "1"
+#     memory: "256Mi"
+#   limits:
+#     cpu: "1"
+#     memory: "512Mi"
+
 nodeSelector: {}
-tolerations: []
 affinity: {}
+tolerations: []
 
 persistence:
-  storageClassName: local-path
-  size: 1Gi
-
-ingress:
   enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  labels: {}
-  path: /
-  hosts:
-    - chart-example.local
-  ## Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
-  extraPaths: []
-  # - path: /*
-  #   backend:
-  #     serviceName: ssl-redirect
-  #     servicePort: use-annotation
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  configstorage:
+    hostPath: {}
+  pvc:
+    enabled: false
+    # accessModes:
+    #   - {}
+    # resources:
+    #   requests:
+    #     storage: 2Gi
+    # storageClassName: ""
 
 monitoring:
   enabled: false
