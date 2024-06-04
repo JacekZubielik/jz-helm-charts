@@ -51,9 +51,6 @@ service:
   httpPort: 6052
   metricsPort: 9100
   additionalPorts: []
-  # - name: homematicproxy
-  #   port: 2001
-  #   targetPort: 2001
 
 monitoring:
   enabled: false
