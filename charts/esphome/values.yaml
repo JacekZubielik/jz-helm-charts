@@ -86,7 +86,7 @@ monitoring:
     # optional:
 livenessProbe:
   enabled: true
-  scheme: HTTP
+  # scheme: HTTP
   periodSeconds: 60
   timeoutSeconds: 10
   successThreshold: 1
@@ -94,7 +94,7 @@ livenessProbe:
   initialDelaySeconds: 30
 readinessProbe:
   enabled: true
-  scheme: HTTP
+  # scheme: HTTP
   periodSeconds: 60
   timeoutSeconds: 10
   successThreshold: 1
@@ -102,7 +102,7 @@ readinessProbe:
   initialDelaySeconds: 30
 startupProbe:
   enabled: true
-  scheme: HTTP
+  # scheme: HTTP
   successThreshold: 1
   failureThreshold: 6
 
