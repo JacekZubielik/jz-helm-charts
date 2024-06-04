@@ -103,6 +103,24 @@ entries:
   esphome:
   - apiVersion: v2
     appVersion: 2024.5.4
+    created: "2024-06-04T19:32:42.543388479Z"
+    description: ESPHome
+    digest: bba5dc8408e7bf1f6ae9c8dcf35f9aeac41a1f36cf4699cfe880455b64e75309
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/esphome
+    icon: https://esphome.io/_images/logo-text.svg
+    keywords:
+    - esphome
+    maintainers:
+    - name: jacekzubielik
+    name: esphome
+    sources:
+    - https://github.com/esphome/esphome
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/esphome-0.0.8/esphome-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
+    appVersion: 2024.5.4
     created: "2024-06-04T19:00:06.617330808Z"
     description: ESPHome
     digest: b38c4133debed5e0d3fdc4cc068fe4ae9bbf8c0e91e08b5bda3abb56eef6e7c9
@@ -554,4 +572,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-06-04T19:00:06.617393875Z"
+generated: "2024-06-04T19:32:42.543449994Z"
