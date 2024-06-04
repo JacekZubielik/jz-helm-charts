@@ -45,11 +45,16 @@ service:
   type: ClusterIP
   externalIPs: []
   loadBalancerIP: ""
-  externalTrafficPolicy: {}
   loadBalancerSourceRanges: []
   publishNotReadyAddresses: false
+  externalTrafficPolicy: {}
   httpPort: 6052
   metricsPort: 9100
+  additionalPorts: []
+  # - name: homematicproxy
+  #   port: 2001
+  #   targetPort: 2001
+
 monitoring:
   enabled: false
   serviceMonitor:
@@ -76,9 +81,9 @@ monitoring:
     bearerTokenFile: {}
     # (use long lived access tokens)
     bearerTokenSecret: {}
-      # name:
-      # key:
-      # optional:
+    # name:
+    # key:
+    # optional:
 livenessProbe:
   enabled: true
   scheme: HTTP
@@ -95,12 +100,17 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 6
   initialDelaySeconds: 30
+startupProbe:
+  enabled: true
+  scheme: HTTP
+  successThreshold: 1
+  failureThreshold: 6
 
 ingress:
   enabled: false
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
   labels: {}
   path: /
   hosts:
@@ -127,18 +137,27 @@ resources: {}
 nodeSelector: {}
 affinity: {}
 tolerations: []
+
 persistence:
-  enabled: false
-  configstorage:
-    hostPath: {}
-  pvc:
-    enabled: false
-    accessModes:
-      - {}
-    resources:
-      requests:
-        storage: 2Gi
-    storageClassName: ""
+  enabled: true
+  ## esphome data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  ##
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  # existingClaim: your-claim
+  ##
+  ## If you want to use a volume on the host machine instead of a PVC:
+  # hostPath: /path/to/the/config/folder
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
 # Mount devices or folders from the host machine. Can be used for USB device mounting.
 hostMounts: []
   # - name: zha
