@@ -75,7 +75,7 @@ spec:
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
           failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
         {{- end }}
         {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
@@ -86,7 +86,7 @@ spec:
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
         {{- end }}
         {{- if .Values.startupProbe.enabled }}
         startupProbe:
@@ -133,7 +133,7 @@ spec:
         {{- if .Values.persistence.enabled }}
           {{- if .Values.persistence.hostPath }}
           hostPath:
-            path: {{.Values.persistence.hostPath}}
+            path: {{.Values.persistence.hostPath }}
           type: Directory
           {{- else }}
           persistentVolumeClaim:
@@ -146,7 +146,7 @@ spec:
         {{- range .Values.hostMounts }}
         - name: {{ .name }}
           hostPath:
-            path: {{.hostPath}}
+            path: {{ .hostPath }}
             {{- if .type }}
             type: {{ .type }}
             {{- end }}
