@@ -2,14 +2,17 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "app.fullname" . }}
+  name: {{ template "app.fullname" . }}
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "app.fullname" . }}
+    name: {{ include "app.name" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
@@ -17,7 +20,7 @@ spec:
     - type: ContainerResource
       containerResource:
         name: cpu
-        container: {{ include "app.fullname" . }}
+        container: {{ include "app.name" . }}
         target:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.averageCPUUtilizationPercentage }}
@@ -26,7 +29,7 @@ spec:
     - type: ContainerResource
       containerResource:
         name: memory
-        container: {{ include "app.fullname" . }}
+        container: {{ include "app.name" . }}
         target:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.averageMemoryUtilizationPercentage }}
