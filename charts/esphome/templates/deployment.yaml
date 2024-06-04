@@ -128,7 +128,7 @@ spec:
         {{- if .Values.persistence.enabled }}
           {{- if .Values.persistence.hostPath }}
           hostPath:
-          path: {{.Values.persistence.hostPath}}
+            path: {{.Values.persistence.hostPath}}
           type: Directory
           {{- else }}
           persistentVolumeClaim:
