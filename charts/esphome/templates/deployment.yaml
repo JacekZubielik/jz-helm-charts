@@ -60,32 +60,32 @@ spec:
         {{- end }}
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
-          httpGet:
-            path: /ping
+          tcpSocket:
+            # path: /ping
             port: {{ .Values.service.httpPort }}
             scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds:  {{ .Values.livenessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
           failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
         {{- end }}
         {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
-          httpGet:
-            path: /ping
+          tcpSocket:
+            # path: /ping
             port: {{ .Values.service.httpPort }}
             scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds:  {{ .Values.readinessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
         {{- end }}
         {{- if .Values.startupProbe.enabled }}
         startupProbe:
-          httpGet:
-            path: /ping
+          tcpSocket:
+            # path: /ping
             port: {{ .Values.service.httpPort }}
             scheme: {{ .Values.startupProbe.scheme }}
           failureThreshold: {{ .Values.startupProbe.failureThreshold }}
