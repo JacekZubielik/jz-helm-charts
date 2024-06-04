@@ -62,7 +62,7 @@ spec:
         livenessProbe:
           tcpSocket:
             # path: /ping
-            port: {{ .Values.service.metricsPort }}
+            port: {{ .Values.service.httpPort }}
             # scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds:  {{ .Values.livenessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
@@ -74,7 +74,7 @@ spec:
         readinessProbe:
           tcpSocket:
             # path: /ping
-            port: {{ .Values.service.metricsPort }}
+            port: {{ .Values.service.httpPort }}
             # scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds:  {{ .Values.readinessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
@@ -86,7 +86,7 @@ spec:
         startupProbe:
           tcpSocket:
             # path: /ping
-            port: {{ .Values.service.metricsPort }}
+            port: {{ .Values.service.httpPort }}
             # scheme: {{ .Values.startupProbe.scheme }}
           failureThreshold: {{ .Values.startupProbe.failureThreshold }}
           periodSeconds: {{ .Values.startupProbe.periodSeconds }}
