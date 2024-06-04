@@ -1,84 +1,171 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "app.fullname" . }}-web
+  name: {{ template "app.fullname" . }}-web
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.web.type }}
-  ports:
-    - port: {{ .Values.service.web.port }}
-      targetPort: {{ .Values.service.web.targetPort }}
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "app.selectorLabels" . | nindent 4 }}
-{{- if .Values.service.web.loadBalancerIP }}
+  {{- if .Values.service.web.externalIPs }}
+  externalIPs:
+  {{- toYaml .Values.service.web.externalIPs | nindent 4 }}
+  {{- end }}
+  {{- if .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.service.web.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.service.web.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.web.loadBalancerIP }}
-  ExternalTrafficPolicy: {{ .Values.service.web.externalTrafficPolicy }}
-{{- end }}
----
+  {{- end }}
+  {{- if .Values.service.web.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{- toYaml .Values.service.web.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
+  publishNotReadyAddresses: {{ .Values.service.web.publishNotReadyAddresses }}
+  ports:
+  - name: http
+    port: {{ .Values.service.web.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.web.targetPort }}
+  selector:
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "app.fullname" . }}-tcp
+  name: {{ template "app.fullname" . }}-tcp
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.tcp.type }}
-  ports:
-    - port: {{ .Values.service.tcp.port }}
-      targetPort: {{ .Values.service.tcp.targetPort }}
-      protocol: TCP
-      name: tcp
-  selector:
-    {{- include "app.selectorLabels" . | nindent 4 }}
-{{- if .Values.service.tcp.loadBalancerIP }}
+  {{- if .Values.service.tcp.externalIPs }}
+  externalIPs:
+  {{- toYaml .Values.service.tcp.externalIPs | nindent 4 }}
+  {{- end }}
+  {{- if .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.service.tcp.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.service.tcp.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.tcp.loadBalancerIP }}
-  ExternalTrafficPolicy: {{ .Values.service.tcp.externalTrafficPolicy }}
-{{- end }}
+  {{- end }}
+  {{- if .Values.service.tcp.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{- toYaml .Values.service.tcp.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
+  publishNotReadyAddresses: {{ .Values.service.tcp.publishNotReadyAddresses }}
+  ports:
+  - name: tcp
+    port: {{ .Values.service.tcp.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.tcp.targetPort }}
+  selector:
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "app.fullname" . }}-udp
+  name: {{ template "app.fullname" . }}-udp
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.udp.type }}
-  ports:
-    - port: {{ .Values.service.udp.port }}
-      targetPort: {{ .Values.service.udp.targetPort }}
-      protocol: UDP
-      name: udp
-  selector:
-    {{- include "app.selectorLabels" . | nindent 4 }}
-{{- if .Values.service.udp.loadBalancerIP }}
+  {{- if .Values.service.udp.externalIPs }}
+  externalIPs:
+  {{- toYaml .Values.service.udp.externalIPs | nindent 4 }}
+  {{- end }}
+  {{- if .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.service.udp.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.service.udp.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.udp.loadBalancerIP }}
-  ExternalTrafficPolicy: {{ .Values.service.udp.externalTrafficPolicy }}
-{{- end }}
+  {{- end }}
+  {{- if .Values.service.udp.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{- toYaml .Values.service.udp.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
+  publishNotReadyAddresses: {{ .Values.service.udp.publishNotReadyAddresses }}
+  ports:
+  - name: udp
+    port: {{ .Values.service.udp.port }}
+    protocol: UDP
+    targetPort: {{ .Values.service.udp.targetPort }}
+  selector:
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "app.fullname" . }}-discovery
+  name: {{ template "app.fullname" . }}-discovery
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+{{- with .Values.service.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.discovery.type }}
-  ports:
-    - port: {{ .Values.service.discovery.port }}
-      targetPort: {{ .Values.service.discovery.targetPort }}
-      protocol: UDP
-      name: discovery
-  selector:
-    {{- include "app.selectorLabels" . | nindent 4 }}
-{{- if .Values.service.discovery.loadBalancerIP }}
+  {{- if .Values.service.discovery.externalIPs }}
+  externalIPs:
+  {{- toYaml .Values.service.discovery.externalIPs | nindent 4 }}
+  {{- end }}
+  {{- if .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.service.discovery.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.service.discovery.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.discovery.loadBalancerIP }}
-  ExternalTrafficPolicy: {{ .Values.service.discovery.externalTrafficPolicy }}
-{{- end }}
+  {{- end }}
+  {{- if .Values.service.discovery.loadBalancerSourceRanges }}
+  loadBalancerSourceRanges:
+  {{- toYaml .Values.service.discovery.loadBalancerSourceRanges | nindent 4 }}
+  {{- end }}
+  publishNotReadyAddresses: {{ .Values.service.discovery.publishNotReadyAddresses }}
+  ports:
+  - name: discovery
+    port: {{ .Values.service.udp.port }}
+    protocol: UDP
+    targetPort: {{ .Values.service.discovery.targetPort }}
+  selector:
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
