@@ -1,16 +1,17 @@
+---
 apiVersion: v2
-appVersion: 1.27.4
+appVersion: 1.27.8
 description: Syncthing Continuous File Synchronization
 name: syncthing
-version: 0.0.1
+version: 0.0.2
 type: application
 keywords:
   - synchronization
   - peer-to-peer
   - p2p
 home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/syncthing
-icon: https://raw.githubusercontent.com/syncthing/syncthing/main/assets/logo-only.svg
+icon: https://github.com/syncthing/syncthing/blob/main/assets/logo-512.png
 sources:
-- https://github.com/syncthing/syncthing
+  - https://github.com/syncthing/syncthing
 maintainers:
   - name: jacekzubielik

@@ -1,26 +1,16 @@
-# Default values for syncthing.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
-
+---
 image:
   repository: syncthing/syncthing
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
+replicaCount: 1
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
@@ -39,26 +29,77 @@ securityContext: {}
 service:
   web:
     type: ClusterIP
-    port: 8384 # tcp
-    targetPort: 8384 # tcp
+    port: 8384
+    targetPort: 8384
   tcp:
-    type: ClusterIP # Change to LoadBalancer if you want to expose the service
-    port: 22000 # tcp
-    targetPort: 22000 # tcp
+    type: ClusterIP
+    port: 22000
+    targetPort: 22000
     externalTrafficPolicy: Local
   udp:
-    type: ClusterIP # Change to LoadBalancer if you want to expose the service
-    port: 22000 # udp
-    targetPort: 22000 # udp
+    type: ClusterIP
+    port: 22000
+    targetPort: 22000
     externalTrafficPolicy: Local
   discovery:
-    type: ClusterIP # Change to LoadBalancer if you want to expose the service
-    port: 21027 # udp
-    targetPort: 21027 # udp
+    type: ClusterIP
+    port: 21027
+    targetPort: 21027
     externalTrafficPolicy: Local
 
+monitoring:
+  enabled: false
+  serviceMonitor:
+    enabled: false
+    labels: {}
+    honorLabels: true
+    interval: 60s
+    selector: {}
+    namespace: {}
+    scrapeTimeout: 10s
+    scheme: http
+    tlsConfig: {}
+    relabelings: []
+    # - sourceLabels: [__meta_kubernetes_pod_node_name]
+    #   separator: ;
+    #   regex: ^(.*)$
+    #   target_label: nodename
+    #   replacement: $1
+    #   action: replace
+    metricRelabelings: []
+    # - action: keep
+    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
+    #   sourceLabels: [__name__]
+    bearerTokenFile: {}
+    # (use long lived access tokens)
+    bearerTokenSecret: {}
+    # name:
+    # key:
+    # optional:
+livenessProbe:
+  enabled: true
+  # scheme: HTTP
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
+  initialDelaySeconds: 30
+readinessProbe:
+  enabled: true
+  # scheme: HTTP
+  periodSeconds: 60
+  timeoutSeconds: 10
+  successThreshold: 1
+  failureThreshold: 6
+  initialDelaySeconds: 30
+startupProbe:
+  enabled: true
+  # scheme: HTTP
+  successThreshold: 1
+  failureThreshold: 6
+
 ingress:
-  enabled: false # Uses service.web
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -73,24 +114,14 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 350m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 128Mi
 
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
@@ -100,15 +131,27 @@ affinity: {}
 
 persistence:
   enabled: true
-  storageClass: ""
+  ## syncthing data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  ##
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  # existingClaim: your-claim
+  ##
+  ## If you want to use a volume on the host machine instead of a PVC:
+  # hostPath: /path/to/the/config/folder
   accessMode: ReadWriteOnce
   size: 2Gi
-  mountPath: /var/syncthing
-  # existingClaim: ""
-  extraVolumes: []
-  # - name: files
-  #   storageClass: ""
-  #   size: 2Gi
-  #   accessMode: ReadWriteOnce
-  #   mountPath: /var/syncthing
-  #   # existingClaim: ""
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  averageCPUUtilizationPercentage: 50
+  averageMemoryUtilizationPercentage: 50
