@@ -1,56 +1,33 @@
-{{- if .Values.ingress.enabled -}} 
+{{- if .Values.ingress.enabled -}}
 {{- $fullName := include "app.fullname" . -}}
-{{- $servicePort := .Values.service.http -}} 
-{{- $ingressPath := .Values.ingress.path -}} 
-{{- $new := false }}
-{{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
-apiVersion: networking.k8s.io/v1
-{{- $new = true }}
-{{- else }}
+{{- $servicePort := .Values.service.port -}}
+{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
-{{- end }}
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "app.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.ingress.annotations }}
   annotations:
-    {{- if not $new }}
-    kubernetes.io/ingress.class: {{ required "If ingress.enabled is set to true, ingress.class is required" .Values.ingress.class }}
-    {{- end }}
-    {{- if .Values.ingress.annotations }}
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
-    {{- end }}
+{{ toYaml . | indent 4 }}
+{{- end }}
 spec:
-  {{- if $new }}
-  ingressClassName: {{ required "If ingress.enabled is set to true, ingress.class is required" .Values.ingress.class }}
-  {{- end }}
-  {{- if .Values.ingress.tls }}
+{{- if .Values.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+  {{- range .Values.ingress.tls }}
     - hosts:
       {{- range .hosts }}
-        - {{ . }}
+        - {{ . | quote }}
       {{- end }}
       secretName: {{ .secretName }}
-    {{- end }}
   {{- end }}
+{{- end }}
   rules:
-    {{- if $new }}
-    {{- range .Values.ingress.hosts }}
-    - host: {{ . }}
-      http:
-        paths:
-          - path: {{ $ingressPath }}
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ $fullName }}
-                port:
-                  number: {{ $servicePort }}
-    {{- end }}
-    {{- else }}
-    {{- range .Values.ingress.hosts }}
+  {{- range .Values.ingress.hosts }}
     - host: {{ . }}
       http:
         paths:
@@ -58,7 +35,5 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: {{ $servicePort }}
-    {{- end }}
-    {{- end }}
+  {{- end }}
 {{- end }}
-
