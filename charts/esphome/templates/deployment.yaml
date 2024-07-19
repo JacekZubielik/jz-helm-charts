@@ -132,7 +132,7 @@ spec:
           type: Directory
           {{- else }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}
             {{- end }}
         {{- end }}
         {{- else }}
