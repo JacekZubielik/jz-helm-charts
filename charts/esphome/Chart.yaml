@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 2024.7.0
 description: ESPHome
 name: esphome
-version: 0.0.11
+version: 0.0.12
 keywords:
   - esphome
 type: application
@@ -13,4 +13,3 @@ sources:
   - https://github.com/esphome/esphome
 maintainers:
   - name: jacekzubielik
-
