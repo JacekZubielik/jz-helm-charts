@@ -340,6 +340,25 @@ entries:
   home-assistant:
   - apiVersion: v2
     appVersion: 2024.6.4
+    created: "2024-07-21T23:53:42.701867128Z"
+    description: Home Assistant automation
+    digest: 3e253b4055ca09eaca48a53e7689e6e931d4a39f89a618a83a1c4247c5332ad7
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/home-assistant
+    icon: https://raw.githubusercontent.com/home-assistant/assets/master/misc/logo-icon_template.png
+    keywords:
+    - home-assistant
+    - automation
+    maintainers:
+    - name: jacekzubielik
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/home-assistant-0.0.5/home-assistant-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 2024.6.4
     created: "2024-06-26T19:06:46.659394004Z"
     description: Home Assistant automation
     digest: 346c242456db1f043387c7f5296684ba9b8caa6cead01dd07a831c3190fb8190
@@ -721,4 +740,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-07-21T23:47:43.937485717Z"
+generated: "2024-07-21T23:53:42.701958329Z"
