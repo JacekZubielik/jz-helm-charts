@@ -97,7 +97,7 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: ha-data
-          #subPath: config
+          subPath: config
         {{- range .Values.hostMounts }}
         {{- if .mountPath }}
         - mountPath: {{ .mountPath }}
