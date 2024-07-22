@@ -129,9 +129,9 @@ spec:
       volumes:
         - name: config-storage
         {{- if .Values.persistence.enabled }}
-        {{- if .Values.persistence.configstorage.hostPath }}
+        {{- if .Values.persistence.hostPath }}
           hostPath:
-            path: {{.Values.persistence.configstorage.hostPath}}
+            path: {{.Values.persistence.hostPath}}
         {{- else }}
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
@@ -139,13 +139,11 @@ spec:
         {{- else }}
           emptyDir: {}
         {{ end }}
-        {{- if and .Values.persistence.enabled .Values.persistence.existingClaim }}
-        - name: config-storage
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim }}
-        {{- end }}
-        {{- range .Values.hostMounts }}
+      {{- range .Values.hostMounts }}
         - name: {{ .name }}
           hostPath:
             path: {{.hostPath}}
-        {{- end }}
+      {{- if .type }}
+            type: {{ .type }}
+      {{- end }}
+      {{- end }}
