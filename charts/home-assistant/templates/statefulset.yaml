@@ -96,7 +96,7 @@ spec:
         {{- end }}
         volumeMounts:
         - mountPath: /config
-          name: data
+          name: ha-data
           #subPath: config
         {{- range .Values.hostMounts }}
         {{- if .mountPath }}
@@ -119,11 +119,11 @@ spec:
       {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: data
+        - name: ha-data
         {{- if .Values.persistence.enabled }}
-        {{- if .Values.persistence.configstorage.hostPath }}
+        {{- if .Values.persistence.hostPath }}
           hostPath:
-            path: {{.Values.persistence.configstorage.hostPath}}
+            path: {{.Values.persistence.hostPath}}
         {{- else }}
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
