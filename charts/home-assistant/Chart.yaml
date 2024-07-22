@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 2024.6.4
+appVersion: 2024.7.3
 description: Home Assistant automation
 name: home-assistant
-version: 0.0.8
+version: 0.0.9
 keywords:
   - home-assistant
   - automation
