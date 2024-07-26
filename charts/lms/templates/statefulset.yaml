@@ -1,16 +1,17 @@
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ template "lms.fullname" . }}
+  name: {{ include "app.fullname" . }}
   labels:
-    {{- include "lms.labels" . | nindent 4 }}
+    {{- include "app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicas }}
   revisionHistoryLimit:  {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
-    {{- include "lms.selectorLabels" . | nindent 6 }}
-  serviceName: {{ include "lms.fullname" . }}
+    {{- include "app.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "app.fullname" . }}
   updateStrategy: {{ toYaml .Values.updateStrategy | nindent 4 }}
   template:
     metadata:
@@ -19,7 +20,7 @@ spec:
       {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-      {{- include "lms.selectorLabels" . | nindent 8 }}
+      {{- include "app.selectorLabels" . | nindent 8 }}
       {{- if .Values.podLabels }}
       {{- toYaml .Values.podLabels | nindent 8 }}
       {{- end }}
@@ -30,7 +31,7 @@ spec:
       {{- end }}
       automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
       shareProcessNamespace: {{ .Values.sidecarSingleProcessNamespace }}
-      serviceAccountName: {{ include "lms.serviceAccountName" . }}
+      serviceAccountName: {{ include "app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- if .Values.hostNetwork }}
@@ -44,7 +45,7 @@ spec:
           command: ["sh", "-c", "mkdir -pv /config /config/playlists /config/IR; chown -Rc 1000:1000 /config"]
           volumeMounts:
             - mountPath: /config
-              name: config-storage
+              name: lms-config
       containers:
       - name: {{ .Chart.Name }}
         securityContext:
@@ -89,36 +90,36 @@ spec:
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:
-            path:              /
-            port:              {{ .Values.service.httpPort }}
-            scheme:            {{ .Values.livenessProbe.scheme }}
-          periodSeconds:       {{ .Values.livenessProbe.periodSeconds }}
-          timeoutSeconds:      {{ .Values.livenessProbe.timeoutSeconds }}
-          successThreshold:    {{ .Values.livenessProbe.successThreshold }}
-          failureThreshold:    {{ .Values.livenessProbe.failureThreshold }}
+            path: /
+            port: {{ .Values.service.httpPort }}
+            scheme: {{ .Values.livenessProbe.scheme }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
         {{- end }}
         {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
           httpGet:
-            path:              /
-            port:              {{ .Values.service.httpPort }}
-            scheme:            {{ .Values.readinessProbe.scheme }}
-          periodSeconds:       {{ .Values.readinessProbe.periodSeconds }}
-          timeoutSeconds:      {{ .Values.readinessProbe.timeoutSeconds }}
-          successThreshold:    {{ .Values.readinessProbe.successThreshold }}
-          failureThreshold:    {{ .Values.readinessProbe.failureThreshold }}
+            path: /
+            port: {{ .Values.service.httpPort }}
+            scheme: {{ .Values.readinessProbe.scheme }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
         {{- end }}
         volumeMounts:
         - mountPath: /config
-          name: config-storage
+          name: lms-config
           #subPath: config
         - mountPath: /config/playlists
-          name: config-storage
+          name: lms-config
           subPath: playlists
         - mountPath: /config/IR
-          name: config-storage
+          name: lms-config
           subPath: IR
         - mountPath: /music
           name: music-storage
@@ -144,26 +145,26 @@ spec:
       {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: config-storage
-        {{- if .Values.persistence.enabled }}
-        {{- if .Values.persistence.configstorage.hostPath }}
+        - name: lms-config
+        {{- if .Values.persistence.lmsconfig.enabled }}
+        {{- if .Values.persistence.lmsconfig.hostPath }}
           hostPath:
-            path: {{.Values.persistence.configstorage.hostPath}}
+            path: {{.Values.persistence.lmsconfig.hostPath}}
         {{- else }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "lms.fullname" . }}{{- end }}
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
         {{- end }}
         {{- else }}
           emptyDir: {}
         {{ end }}
         - name: music-storage
-        {{- if .Values.persistence.enabled }}
+        {{- if .Values.persistence.musicstorage.enabled }}
         {{- if .Values.persistence.musicstorage.hostPath }}
           hostPath:
             path: {{.Values.persistence.musicstorage.hostPath}}
         {{- else }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "lms.fullname" . }}{{- end }}
+            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
         {{- end }}
         {{- else }}
           emptyDir: {}

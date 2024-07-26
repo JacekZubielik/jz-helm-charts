@@ -1,21 +1,54 @@
-{{- if and .Values.persistence.pvc.enabled (not .Values.persistence.configstorage.hostPath) }}
+{{- if .Values.persistence.lmsconfig.enabled -}}
+{{- if not .Values.persistence.lmsconfig.existingClaim -}}
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "lms.fullname" . }}
+  name: {{ template "app.fullname" . }}
   labels:
-    {{- include "lms.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   accessModes:
-    - {{ .Values.persistence.pvc.accessMode }}
+    - {{ .Values.persistence.lmsconfig.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.pvc.size }}
-  {{- if .Values.persistence.pvc.storageClass }}
-  {{- if (eq "-" .Values.persistence.pvc.storageClass) }}
+      storage: {{ .Values.persistence.lmsconfig.size }}
+{{- if .Values.persistence.lmsconfig.storageClass }}
+{{- if (eq "-" .Values.persistence.lmsconfig.storageClass) }}
   storageClassName: ""
-  {{- else }}
-  storageClassName: "{{ .Values.persistence.pvc.storageClass }}"
-  {{- end }}
-  {{- end }}
+{{- else }}
+  storageClassName: "{{ .Values.persistence.lmsconfig.storageClass }}"
 {{- end }}
+{{- end }}
+{{- end -}}
+{{- end -}}
+
+---
+{{- if .Values.persistence.musicstorage.enabled -}}
+{{- if not .Values.persistence.musicstorage.existingClaim -}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ template "app.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "app.name" . }}
+    helm.sh/chart: {{ include "app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.musicstorage.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.musicstorage.size }}
+{{- if .Values.persistence.musicstorage.storageClass }}
+{{- if (eq "-" .Values.persistence.musicstorage.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.persistence.musicstorage.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}
+{{- end -}}
