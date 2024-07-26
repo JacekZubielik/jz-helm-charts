@@ -5,9 +5,9 @@ metadata:
   annotations:
   {{- toYaml .Values.service.annotations | nindent 4 }}
   {{- end }}
-  name: {{ template "lms.fullname" . }}
+  name: {{ template "app.fullname" . }}
   labels:
-  {{- include "lms.labels" . | nindent 4 }}
+  {{- include "app.labels" . | nindent 4 }}
   {{- if .Values.service.labels }}
   {{ toYaml .Values.service.labels | indent 4 }}
   {{- end }}
@@ -50,4 +50,4 @@ spec:
     protocol: TCP
     targetPort: metrics
   selector:
-  {{- include "lms.selectorLabels" . | nindent 4 }}
+  {{- include "app.selectorLabels" . | nindent 4 }}
