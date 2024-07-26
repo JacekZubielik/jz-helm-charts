@@ -148,7 +148,7 @@ affinity: {}
 tolerations: []
 
 persistence:
-  lmsconfig: 
+  lmsconfig:
     enabled: true
     ## esphome data Persistent Volume Storage Class
     ## If defined, storageClassName: <storageClass>
