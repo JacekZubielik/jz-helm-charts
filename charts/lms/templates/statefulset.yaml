@@ -152,7 +152,7 @@ spec:
             path: {{.Values.persistence.lmsconfig.hostPath}}
         {{- else }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
+            claimName: {{ if .Values.persistence.lmsconfig.existingClaim }}{{ .Values.persistence.lmsconfig.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
         {{- end }}
         {{- else }}
           emptyDir: {}
@@ -164,7 +164,7 @@ spec:
             path: {{.Values.persistence.musicstorage.hostPath}}
         {{- else }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
+            claimName: {{ if .Values.persistence.musicstorage.existingClaim }}{{ .Values.persistence.musicstorage.existingClaim }}{{- else }}{{ template "app.fullname" . }}{{- end }}
         {{- end }}
         {{- else }}
           emptyDir: {}
