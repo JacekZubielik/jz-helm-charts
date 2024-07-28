@@ -1,0 +1,15 @@
+---
+apiVersion: v2
+appVersion: 1.2.6
+description: Mikrotik MKTXP Prometheus exporter
+name: mktxp-exporter
+version: 0.0.3
+keywords:
+- mikrotik-exporter
+- mktxp-exporter
+type: application
+home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/mikrotik-exporter
+sources:
+- https://github.com/akpw/mktxp
+maintainers:
+  - name: jacekzubielik
