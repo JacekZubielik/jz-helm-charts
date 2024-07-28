@@ -34,7 +34,7 @@ spec:
     {{- if .Values.monitoring.serviceMonitor.interval }}
     interval: {{ .Values.monitoring.serviceMonitor.interval }}
     {{- end }}
-    {{- if .Values.monitoring.serviceMonitor.scrapeTimeout}}
+    {{- if .Values.monitoring.serviceMonitor.scrapeTimeout }}
     scrapeTimeout: {{ .Values.monitoring.serviceMonitor.scrapeTimeout }}
     {{- end }}
     {{- with .Values.monitoring.serviceMonitor.scheme }}
