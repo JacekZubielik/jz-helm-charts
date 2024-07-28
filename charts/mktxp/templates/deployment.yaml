@@ -43,7 +43,7 @@ spec:
               readOnly: true
           ports:
             - name: metrics
-              containerPort: {{ .Values.app.port }}
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe: null
             # httpGet:

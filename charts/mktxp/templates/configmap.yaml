@@ -7,26 +7,26 @@ metadata:
 data:
   _app.conf: |
     [app]
-        port = {{ .Values.app.port }}
-        socket_timeout = {{ .Values.app.socketTimeout }}
+        port = {{ .Values.service.port }}
+        socket_timeout = {{ .Values.mktxp.socketTimeout }}
         
-        initial_delay_on_failure = {{ .Values.app.scraping.initialDelayOnFailure }}
-        max_delay_on_failure = {{ .Values.app.scraping.maximumDelayOnFailure }}
-        delay_inc_div = {{ .Values.app.scraping.delayIncrementDivision }}
+        initial_delay_on_failure = {{ .Values.mktxp.scraping.initialDelayOnFailure }}
+        max_delay_on_failure = {{ .Values.mktxp.scraping.maximumDelayOnFailure }}
+        delay_inc_div = {{ .Values.mktxp.scraping.delayIncrementDivision }}
 
-        bandwidth = {{ .Values.app.bandwidth.enable }}                # Turns metrics bandwidth metrics collection on / off    
-        bandwidth_test_interval = {{ .Values.app.bandwidth.collectionInterval }}   # Interval for colllecting bandwidth metrics
-        minimal_collect_interval = {{ .Values.app.scraping.minimumCollectionInterval }}    # Minimal metric collection interval
+        bandwidth = {{ .Values.mktxp.bandwidth.enable }}                # Turns metrics bandwidth metrics collection on / off    
+        bandwidth_test_interval = {{ .Values.mktxp.bandwidth.collectionInterval }}   # Interval for colllecting bandwidth metrics
+        minimal_collect_interval = {{ .Values.mktxp.scraping.minimumCollectionInterval }}    # Minimal metric collection interval
 
-        verbose_mode = {{ .Values.app.logging.verbose }}            # Set it on for troubleshooting
+        verbose_mode = {{ .Values.mktxp.logging.verbose }}            # Set it on for troubleshooting
 
-        fetch_routers_in_parallel = {{ .Values.app.performance.threading.enable }}   # Set to True if you want to fetch multiple routers parallel
-        max_worker_threads = {{ .Values.app.performance.threading.maxThreads }}              # Max number of worker threads that can fetch routers. Meaningless if fetch_routers_in_parallel is set to False
+        fetch_routers_in_parallel = {{ .Values.mktxp.performance.threading.enable }}   # Set to True if you want to fetch multiple routers parallel
+        max_worker_threads = {{ .Values.mktxp.performance.threading.maxThreads }}              # Max number of worker threads that can fetch routers. Meaningless if fetch_routers_in_parallel is set to False
         
-        max_scrape_duration = {{ .Values.app.scraping.maxSingleRouterScrapeDuration }}            # Max duration of individual routers' metrics collection 
-        total_max_scrape_duration = {{ .Values.app.scraping.maxAllRouterScrapeDuration }}      # Max overall duration of all metrics collection 
+        max_scrape_duration = {{ .Values.mktxp.scraping.maxSingleRouterScrapeDuration }}            # Max duration of individual routers' metrics collection 
+        total_max_scrape_duration = {{ .Values.mktxp.scraping.maxAllRouterScrapeDuration }}      # Max overall duration of all metrics collection 
   app.conf: |
-    {{- range .Values.app.targets }}
+    {{- range .Values.mktxp.targets }}
     [{{ .name }}]
         enabled = {{ .connection.enabled }}
         hostname = {{ .connection.hostname }}
