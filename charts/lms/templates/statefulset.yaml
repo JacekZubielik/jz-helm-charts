@@ -114,13 +114,13 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: lms-config
-          #subPath: config
+          subPath: config
         - mountPath: /config/playlists
           name: lms-config
-          # subPath: playlists
+          subPath: playlists
         - mountPath: /config/IR
           name: lms-config
-          # subPath: IR
+          subPath: IR
         - mountPath: /music
           name: music-storage
           readOnly: true
