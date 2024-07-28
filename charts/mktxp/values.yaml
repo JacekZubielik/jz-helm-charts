@@ -3,7 +3,7 @@ replicaCount: 1
 mktxp:
   port: 49090
   socketTimeout: 2
-  
+
   scraping:
     delayIncrementDivision: 5
     initialDelayOnFailure: 120
@@ -11,7 +11,7 @@ mktxp:
     minimumCollectionInterval: 5
     maxSingleRouterScrapeDuration: 10
     maxAllRouterScrapeDuration: 30
-  
+
   bandwidth:
     enable: true
     collectionInterval: 420
@@ -49,7 +49,6 @@ serviceMonitor:
   create: true
   annotations: {}
   name: ""
-
 
 serviceAccount:
   create: true
