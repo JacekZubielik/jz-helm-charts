@@ -161,7 +161,7 @@ persistence:
     ##
     ## If you want to reuse an existing claim, you can pass the name of the PVC using
     ## the existingClaim variable
-    existingClaim: ""
+    # existingClaim: 
     ##
     ## If you want to use a volume on the host machine instead of a PVC:
     # hostPath: /path/to/the/config/folder
@@ -171,7 +171,7 @@ persistence:
   musicstorage:
     enabled: false
     # storageClass: "-"
-    existingClaim: pvc-musicstorage
+    # existingClaim: pvc-musicstorage
     # hostPath: /path/to/the/music/folder
 
 # Mount devices or folders from the host machine. Can be used for USB device mounting.
