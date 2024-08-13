@@ -2,39 +2,33 @@
 area/github:
 - changed-files:
   - any-glob-to-any-file: ".github/**/*"
-area/bootstrap:
-- changed-files:
-  - any-glob-to-any-file: "bootstrap/**/*"
-area/project:
-- changed-files:
-  - any-glob-to-any-file: "project/*"
-chart/apps/iot:
+chart/binance-proxy:
 - changed-files:
   - any-glob-to-any-file: "charts/binance-proxy/**/*"
-chart/apps/monitoring:
+chart/esphome:
 - changed-files:
   - any-glob-to-any-file: "charts/esphome/**/*"
-chart/apps/storage:
+chart/external-dns:
 - changed-files:
   - any-glob-to-any-file: "charts/external-dns/**/*"
-chart/apps/system:
+chart/home-assistant:
 - changed-files:
   - any-glob-to-any-file: "charts/home-assistant/**/*"
-chart/apps/user:
+chart/lms:
 - changed-files:
   - any-glob-to-any-file: "charts/lms/**/*"
-chart/apps/trade:
+chart/mktxp:
 - changed-files:
-  - any-glob-to-any-file: "charts/mktxp-exporter/**/*"
-chart/apps/user:
+  - any-glob-to-any-file: "charts/mktxp/**/*"
+chart/mosquitto:
 - changed-files:
   - any-glob-to-any-file: "charts/mosquitto/**/*"
-chart/apps/user:
+chart/syncthing:
 - changed-files:
   - any-glob-to-any-file: "charts/syncthing/**/*"
-chart/apps/user:
+chart/uptime-kuma:
 - changed-files:
   - any-glob-to-any-file: "charts/uptime-kuma/**/*"
-chart/apps/user:
+chart/zigbee2mqtt:
 - changed-files:
   - any-glob-to-any-file: "charts/zigbee2mqtt/**/*"

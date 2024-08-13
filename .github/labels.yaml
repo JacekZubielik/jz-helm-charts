@@ -4,35 +4,43 @@
   color: "72ccf3"
   description: >-
     Changes made in the github directory
-- name: area/bootstrap
+- name: chart/binance-proxy
   color: "ee0000"
   description: >-
     Changes made in the bootstrap directory
-- name: area/project
+- name: chart/esphome
   color: "72ccf3"
   description: >-
     Changes made in the project directory
-- name: area/apps/iot
+- name: chart/external-dns
   color: "009900"
   description: >-
     Changes made in the apps directory
-- name: area/apps/monitoring
+- name: chart/home-assistant
   color: "ee5500"
   description: >-
     Changes made in the dev directory
-- name: area/apps/storage
+- name: chart/lms
   color: "72ccf3"
   description: >-
     Changes made in the storage directory
-- name: area/apps/system
+- name: chart/mktxp
   color: "ee0000"
   description: >-
     Changes made in the system directory
-- name: area/apps/trade
+- name: chart/mosquitto
   color: "84b6eb"
   description: >-
     Changes made in the monitoring directory
-- name: area/apps/user
+- name: chart/syncthing
+  color: "72ccf3"
+  description: >-
+    Changes made in the monitoring directory
+- name: chart/uptime-kuma
+  color: "72ccf3"
+  description: >-
+    Changes made in the monitoring directory
+- name: chart/zigbee2mqtt
   color: "72ccf3"
   description: >-
     Changes made in the monitoring directory
