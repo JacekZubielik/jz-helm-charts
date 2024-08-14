@@ -87,6 +87,10 @@ spec:
         - name: metrics
           containerPort: {{ .Values.service.metricsPort }}
           protocol: TCP
+        - name: spotify
+          containerPort: {{ .Values.service.spotifyPort }}
+          protocol: TCP
+
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:
