@@ -512,6 +512,26 @@ entries:
   lms:
   - apiVersion: v2
     appVersion: 9.0.0
+    created: "2024-08-14T16:39:45.608277808Z"
+    description: Lyrion Media Server
+    digest: b32babcb01606cb10c44c920c56aeeb9612b2a32d3db48febced864574fdfba3
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/lms
+    icon: https://truecharts.org/img/hotlink-ok/chart-icons/logitech-media-server.png
+    keywords:
+    - lms
+    - logitechmediaserver
+    - lyrionmediaserver
+    maintainers:
+    - name: jacekzubielik
+    name: lms
+    sources:
+    - https://hub.docker.com/r/lmscommunity/logitechmediaserver
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/lms-0.0.15/lms-0.0.15.tgz
+    version: 0.0.15
+  - apiVersion: v2
+    appVersion: 9.0.0
     created: "2024-08-13T15:33:39.943719579Z"
     description: Lyrion Media Server
     digest: 7a379b6cd0ecec979b06d059cabc820841ce6dc8fb3e15b8f221da27d64ecf08
@@ -1126,4 +1146,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-08-13T15:33:39.943841337Z"
+generated: "2024-08-14T16:39:45.608480568Z"
