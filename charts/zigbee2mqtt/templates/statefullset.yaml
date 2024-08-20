@@ -103,7 +103,7 @@ spec:
         {{- end }}
         volumeMounts:
         - name: zigbee2mqtt
-          mountPath: /app/configuration.yaml
+          mountPath: /data/configuration.yaml
           subPath: configuration.yaml
         - name: data
           mountPath: /data
