@@ -60,7 +60,7 @@ spec:
           runAsUser: 0
           privileged: true
         volumeMounts:
-        - name:      mosquitto-data
+        - name: mosquitto-data
           mountPath: /mosquitto
       containers:
       - name: {{ .Chart.Name }}
@@ -82,62 +82,56 @@ spec:
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:
-            path:              /
-            port:              {{ .Values.service.mqttPort }}
-            scheme:            {{ .Values.livenessProbe.scheme }}
-          periodSeconds:       {{ .Values.livenessProbe.periodSeconds }}
-          timeoutSeconds:      {{ .Values.livenessProbe.timeoutSeconds }}
-          successThreshold:    {{ .Values.livenessProbe.successThreshold }}
-          failureThreshold:    {{ .Values.livenessProbe.failureThreshold }}
+            path: /
+            port: {{ .Values.service.mqttPort }}
+            scheme: {{ .Values.livenessProbe.scheme }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds}}
         {{- end }}
         {{- if .Values.readinessProbe.enabled }}
         readinessProbe:
           httpGet:
-            path:              /
-            port:              {{ .Values.service.mqttPort }}
-            scheme:            {{ .Values.livenessProbe.scheme }}
-          periodSeconds:       {{ .Values.readinessProbe.periodSeconds }}
-          timeoutSeconds:      {{ .Values.readinessProbe.timeoutSeconds }}
-          successThreshold:    {{ .Values.readinessProbe.successThreshold }}
-          failureThreshold:    {{ .Values.readinessProbe.failureThreshold }}
+            path: /
+            port: {{ .Values.service.mqttPort }}
+            scheme: {{ .Values.livenessProbe.scheme }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
         {{- end }}
         volumeMounts:
         - name: mosquitto-conf
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
-          readOnly: false
         - name: mosquitto-passwd
           mountPath: /mosquitto/password_file
           subPath: password_file
-          readOnly: false
         - name: mosquitto-ca-cert
           mountPath: /mosquitto/config/certs/ca.crt
           subPath: ca.crt
-          readOnly: false
         - name: mosquitto-server-cert
           mountPath: /mosquitto/config/certs/server.crt
           subPath: server.crt
-          readOnly: false
         - name: mosquitto-server-key
           mountPath: /mosquitto/config/certs/server.key
           subPath: server.key
-          readOnly: false
         - name: mosquitto-data
-          mountPath: /mosquitto
-          subPath: mosquitto
-          readOnly: false
+          mountPath: /mosquitto/data
+          subPath: mosquitto/data
         resources:
         {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-      - name: mosquitto-passwd
-        secret:
-          secretName: mosquitto-secrets
-          items:
-          - key:  password_file
-            path: password_file
-            mode: 0644
+      # - name: mosquitto-passwd
+      #   secret:
+      #     secretName: mosquitto-secrets
+      #     items:
+      #     - key: password_file
+      #       path: password_file
+      #       mode: 0644
       - name: mosquitto-conf
         configMap:
           name: {{ include "app.fullname" . }}

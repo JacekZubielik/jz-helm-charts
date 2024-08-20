@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 2.0.18
 description: Eclipse Mosquitto MQTT
 name: mosquitto
-version: 0.0.3
+version: 0.0.4
 type: application
 keywords:
 - mqtt
@@ -12,4 +12,4 @@ icon: https://raw.githubusercontent.com/eclipse/mosquitto/master/logo/mosquitto-
 sources:
 - https://github.com/eclipse/mosquitto
 maintainers:
-  - name: jacekzubielik
+- name: jacekzubielik
