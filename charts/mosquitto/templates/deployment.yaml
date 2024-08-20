@@ -107,27 +107,27 @@ spec:
         - name: mosquitto-conf
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
-          readOnly: true
+          readOnly: false
         - name: mosquitto-passwd
           mountPath: /mosquitto/password_file
           subPath: password_file
-          readOnly: true
+          readOnly: false
         - name: mosquitto-ca-cert
           mountPath: /mosquitto/config/certs/ca.crt
           subPath: ca.crt
-          readOnly: true
+          readOnly: false
         - name: mosquitto-server-cert
           mountPath: /mosquitto/config/certs/server.crt
           subPath: server.crt
-          readOnly: true
+          readOnly: false
         - name: mosquitto-server-key
           mountPath: /mosquitto/config/certs/server.key
           subPath: server.key
-          readOnly: true
+          readOnly: false
         - name: mosquitto-data
           mountPath: /mosquitto
           subPath: mosquitto
-          readOnly: true
+          readOnly: false
         resources:
         {{- toYaml .Values.resources | nindent 12 }}
       volumes:
