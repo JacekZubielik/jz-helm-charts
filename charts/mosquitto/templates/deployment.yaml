@@ -107,15 +107,19 @@ spec:
         - name: mosquitto-conf
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
+          readOnly: true
         - name: mosquitto-passwd
           mountPath: /mosquitto/password_file
           subPath: password_file
+          readOnly: true
         - name: mosquitto-ca-cert
           mountPath: /mosquitto/config/certs/ca.crt
           subPath: ca.crt
+          readOnly: true
         - name: mosquitto-server-cert
           mountPath: /mosquitto/config/certs/server.crt
           subPath: server.crt
+          readOnly: true
         - name: mosquitto-server-key
           mountPath: /mosquitto/config/certs/server.key
           subPath: server.key
@@ -123,6 +127,7 @@ spec:
         - name: mosquitto-data
           mountPath: /mosquitto
           subPath: mosquitto
+          readOnly: true
         resources:
         {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -137,14 +142,23 @@ spec:
         configMap:
           name: {{ include "app.fullname" . }}
       - name: mosquitto-ca-cert
-        secret:
-          secretName: mosquitto-ca-cert
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+            - key: ca.crt
+              path: ca.crt
       - name: mosquitto-server-cert
-        secret:
-          secretName: mosquitto-server-cert
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+              - key: server.crt
+                path: server.crt
       - name: mosquitto-server-key
-        secret:
-          secretName: mosquitto-server-key
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+              - key: server.key
+                path: server.key
       - name: mosquitto-data
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
