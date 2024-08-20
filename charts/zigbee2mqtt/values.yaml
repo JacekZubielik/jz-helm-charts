@@ -35,7 +35,6 @@ config:
     log_output:
       - console
 
-
 replicas: 1
 updateStrategy:
   type: RollingUpdate
