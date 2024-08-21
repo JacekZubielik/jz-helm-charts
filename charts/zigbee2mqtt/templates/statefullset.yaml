@@ -109,10 +109,37 @@ spec:
           mountPath: /data
         - name: sniffer
           mountPath: {{ .Values.config.serial.port }}
+        - name: zigbee2mqtt-ca-cert
+          mountPath: /cert/ca.crt
+          subPath: ca.crt
+        - name: zigbee2mqtt-client-cert
+          mountPath: /cert/client.crt
+          subPath: server.crt
+        - name: zigbee2mqtt-client-key
+          mountPath: /cert/client.key
+          subPath: client.key
       volumes:
       - name: zigbee2mqtt
         configMap:
           name: {{ include "app.fullname" . }}
+      - name: zigbee2mqtt-ca-cert
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+            - key: ca.crt
+              path: ca.crt
+      - name: zigbee2mqtt-client-cert
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+              - key: client.crt
+                path: client.crt
+      - name: zigbee2mqtt-client-key
+        configMap:
+          name: {{ include "app.fullname" . }}-certs
+          items:
+              - key: client.key
+                path: client.key
       - name: sniffer
         hostPath:
           path: {{ required "You must specify a path to your zigbee sniffer" .Values.config.serial.port }}
