@@ -120,5 +120,5 @@ persistence:
   enabled: true
   storageClass: local-path
   accessMode: ReadWriteOnce
-  size: 2Gi
+  size: 1Gi
   annotations: {}
