@@ -43,7 +43,7 @@ spec:
       initContainers:
       - name: init-config
         image: busybox
-        command: ["/bin/cp", "-v", "/tmp/password_file", "/mosquitto/config/password_file"]
+        command: ["/bin/cp", "-v", "/tmp/password_file", "/mosquitto/password_file"]
         securityContext:
           runAsNonRoot: false
           privileged: true
@@ -57,7 +57,7 @@ spec:
         image: busybox
         command: ["/bin/chown", "-R", "1883:1883", "/mosquitto"]
         securityContext:
-          runAsUser: 0
+          runAsUser: 1883
           privileged: true
         volumeMounts:
         - name: mosquitto-data
@@ -108,7 +108,7 @@ spec:
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
         - name: mosquitto-passwd
-          mountPath: /mosquitto/config/password_file
+          mountPath: /mosquitto/password_file
           subPath: password_file
         - name: mosquitto-ca-cert
           mountPath: /mosquitto/config/certs/ca.crt
