@@ -131,7 +131,7 @@ spec:
           items:
           - key: password_file
             path: password_file
-            mode: 0644
+            mode: 0700
       - name: mosquitto-conf
         configMap:
           name: {{ include "app.fullname" . }}
