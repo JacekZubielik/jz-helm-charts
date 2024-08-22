@@ -107,9 +107,9 @@ spec:
         - name: mosquitto-conf
           mountPath: /mosquitto/config/mosquitto.conf
           subPath: mosquitto.conf
-        # - name: mosquitto-passwd
-        #   mountPath: /mosquitto/password_file
-        #   subPath: password_file
+        - name: mosquitto-passwd
+          mountPath: /mosquitto/password_file
+          subPath: password_file
         - name: mosquitto-ca-cert
           mountPath: /mosquitto/config/certs/ca.crt
           subPath: ca.crt
@@ -125,13 +125,13 @@ spec:
         resources:
         {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-      # - name: mosquitto-passwd
-      #   secret:
-      #     secretName: mosquitto-secrets
-      #     items:
-      #     - key: password_file
-      #       path: password_file
-      #       mode: 0644
+      - name: mosquitto-passwd
+        secret:
+          secretName: mosquitto-secrets
+          items:
+          - key: password_file
+            path: password_file
+            mode: 0644
       - name: mosquitto-conf
         configMap:
           name: {{ include "app.fullname" . }}
