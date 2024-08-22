@@ -57,7 +57,7 @@ spec:
         image: busybox
         command: ["/bin/chown", "-R", "1883:1883", "/mosquitto"]
         securityContext:
-          runAsUser: 1883
+          runAsUser: 0
           privileged: true
         volumeMounts:
         - name: mosquitto-data
