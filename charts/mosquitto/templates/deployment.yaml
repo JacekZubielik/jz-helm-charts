@@ -156,7 +156,8 @@ spec:
       - name: mosquitto-data
       {{- if .Values.persistence.enabled }}
         persistentVolumeClaim:
-          claimName: {{ include "app.fullname" . }}
+          claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}
+          {{- end }}
       {{- else }}
         emptyDir: {}
       {{- end -}}
