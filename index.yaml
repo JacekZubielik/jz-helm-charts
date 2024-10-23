@@ -1349,6 +1349,26 @@ entries:
     version: 0.0.1
   zigbee2mqtt:
   - apiVersion: v2
+    appVersion: 1.40.2
+    created: "2024-10-23T14:42:24.624367662Z"
+    description: Zigbee Bridge via MQTT
+    digest: c2b2a17dbd571c961b6ce610aa6eba0fc126a1fe56f71edc2cbd85f78e524966
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/zigbee2mqtt
+    icon: https://www.zigbee2mqtt.io/images/logo.png
+    keywords:
+    - zigbee2mqtt
+    - zigbee
+    - mqtt
+    maintainers:
+    - name: jacekzubielik
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.11/zigbee2mqtt-0.0.11.tgz
+    version: 0.0.11
+  - apiVersion: v2
     appVersion: 1.39.1
     created: "2024-08-21T01:06:27.967752381Z"
     description: Zigbee Bridge via MQTT
@@ -1548,4 +1568,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2024-10-23T13:08:59.72535661Z"
+generated: "2024-10-23T14:42:24.624556285Z"
