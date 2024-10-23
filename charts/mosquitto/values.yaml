@@ -36,7 +36,7 @@ serviceAccount:
 
 service:
   annotations:
-    prometheus.io/scrape: "false"
+    prometheus.io/scrape: "true"
     prometheus.io/port: 9100
   labels: {}
   type: ClusterIP
@@ -97,6 +97,7 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 6
   initialDelaySeconds: 30
+
 ingress:
   enabled: false
   annotations: {}

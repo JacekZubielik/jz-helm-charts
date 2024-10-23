@@ -84,7 +84,7 @@ spec:
           httpGet:
             path: /
             port: {{ .Values.service.mqttPort }}
-            scheme: {{ .Values.livenessProbe.scheme }}
+            # scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.livenessProbe.successThreshold }}
@@ -96,13 +96,14 @@ spec:
           httpGet:
             path: /
             port: {{ .Values.service.mqttPort }}
-            scheme: {{ .Values.livenessProbe.scheme }}
+            # scheme: {{ .Values.livenessProbe.scheme }}
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
           successThreshold: {{ .Values.readinessProbe.successThreshold }}
           failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds}}
         {{- end }}
+
         volumeMounts:
         - name: mosquitto-conf
           mountPath: /mosquitto/config/mosquitto.conf
