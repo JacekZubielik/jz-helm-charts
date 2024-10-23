@@ -1,8 +1,8 @@
 apiVersion: v2
-appVersion: 1.39.1
+appVersion: 1.40.2
 description: Zigbee Bridge via MQTT
 name: zigbee2mqtt
-version: 0.0.10
+version: 0.0.11
 type: application
 keywords:
   - zigbee2mqtt
