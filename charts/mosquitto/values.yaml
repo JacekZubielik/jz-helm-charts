@@ -36,7 +36,7 @@ serviceAccount:
 
 service:
   annotations:
-    prometheus.io/scrape: "false"
+    prometheus.io/scrape: "true"
     prometheus.io/port: 9100
   labels: {}
   type: ClusterIP
