@@ -97,6 +97,7 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 6
   initialDelaySeconds: 30
+
 ingress:
   enabled: false
   annotations: {}
