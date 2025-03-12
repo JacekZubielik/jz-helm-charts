@@ -1,3 +1,4 @@
+---
 image:
   repository: eclipse-mosquitto
   tag: ""
@@ -6,7 +7,7 @@ image:
 nameOverride: ""
 fullnameOverride: ""
 revisionHistoryLimit: 2
-replicas: 1
+# replicaCount: 1
 strategyType: RollingUpdate
 
 imagePullSecrets: []
@@ -123,3 +124,10 @@ persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
   annotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  averageCPUUtilizationPercentage: 50
+  averageMemoryUtilizationPercentage: 50
