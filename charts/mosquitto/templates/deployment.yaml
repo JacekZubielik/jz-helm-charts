@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/name: {{ include "app.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
   revisionHistoryLimit:  {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
