@@ -15,7 +15,13 @@ spec:
   {{- end }}
 {{- with .Values.service.ports }}
   ports:
-    {{- toYaml . | nindent 4 }}
-{{- end }}
+    - port: {{ .Values.binanceProxy.portSpot }}
+      targetPort: {{ .Values.binanceProxy.portSpot }}
+      protocol: TCP
+      name: port-spot
+    - port: {{ .Values.binanceProxy.portFutures }}
+      targetPort: {{ .Values.binanceProxy.portFutures }}
+      protocol: TCP
+      name: port-futures
   selector:
     {{- include "app.selectorLabels" . | nindent 4 }}

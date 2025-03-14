@@ -33,12 +33,30 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            {{- if .Values.binanceProxy.verbose }}
+            - "-v"
+            {{- end }}
+            - "-p={{ .Values.binanceProxy.portSpot }}"
+            - "-t={{ .Values.binanceProxy.portFutures }}"
+            {{- if .Values.binanceProxy.disableFakeCandles }}
+            - "-c"
+            {{- end }}
+            {{- if .Values.binanceProxy.disableSpot }}
+            - "-s"
+            {{- end }}
+            {{- if .Values.binanceProxy.disableFutures }}
+            - "-f"
+            {{- end }}
+            {{- if .Values.binanceProxy.alwaysShowForwards }}
+            - "-a"
+            {{- end }}
           ports:
             - name: port-spot
-              containerPort: 8090
+              containerPort: {{ .Values.binanceProxy.portSpot }}
               protocol: TCP
             - name: port-futures
-              containerPort: 8091
+              containerPort: {{ .Values.binanceProxy.portFutures }}
               protocol: TCP
           env:
             - name: TZ
