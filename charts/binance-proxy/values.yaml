@@ -1,5 +1,5 @@
 ---
-replicaCount: {}
+replicaCount: 1
 
 image:
   repository: nightshift2k/binance-proxy
@@ -30,16 +30,6 @@ service:
   type: ClusterIP
   externalIPs: []
   loadBalancerIP: ""
-
-  ports:
-    - name: port-spot
-      protocol: TCP
-      targetPort: 8090
-      port: 8090
-    - name: port-futures
-      protocol: TCP
-      targetPort: 8091
-      port: 8091
 
 resources: {}
 # limits:
