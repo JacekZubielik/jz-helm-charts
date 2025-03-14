@@ -13,7 +13,6 @@ spec:
   {{- if .Values.service.loadBalancerIP }}
   loadBalancerIP: {{ .Values.service.loadBalancerIP }}
   {{- end }}
-{{- with .Values.service.ports }}
   ports:
     - port: {{ .Values.binanceProxy.portSpot }}
       targetPort: {{ .Values.binanceProxy.portSpot }}
