@@ -3,6 +3,25 @@ entries:
   binance-proxy:
   - apiVersion: v2
     appVersion: 1.2.4
+    created: "2025-03-14T15:42:30.870098119Z"
+    description: Binance websocket proxy
+    digest: 080b9eddb3042a62e9828319aa076c22b7b5fdc3eeac1fe698952725bf9ee32d
+    home: https://github.com/JacekZubielik/jz-helm-charts/tree/master/charts/binance-proxy
+    keywords:
+    - websocket
+    - proxy
+    - binance
+    maintainers:
+    - name: jacekzubielik
+    name: binance-proxy
+    sources:
+    - https://github.com/nightshift2k/binance-proxy
+    type: application
+    urls:
+    - https://github.com/JacekZubielik/jz-helm-charts/releases/download/binance-proxy-0.0.8/binance-proxy-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
+    appVersion: 1.2.4
     created: "2025-03-14T14:05:56.03050153Z"
     description: Binance websocket proxy
     digest: bfe53b3ff62c4f4ee57995ff097943cb0a327917f12fbd2113129ef4d338200d
@@ -1644,4 +1663,4 @@ entries:
     urls:
     - https://github.com/JacekZubielik/jz-helm-charts/releases/download/zigbee2mqtt-0.0.1/zigbee2mqtt-0.0.1.tgz
     version: 0.0.1
-generated: "2025-03-14T14:05:56.030751027Z"
+generated: "2025-03-14T15:42:30.871014918Z"
