@@ -1,3 +1,4 @@
+---
 name: Release Charts
 
 env:
@@ -47,7 +48,7 @@ jobs:
       ## This is required to consider the old Circle-CI Index and to stay compatible with all the old releases.
       - name: Fetch current Chart Index
         run: |
-          git checkout origin/gh-pages index.yaml        
+          git checkout origin/gh-pages index.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
