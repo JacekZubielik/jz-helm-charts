@@ -38,7 +38,7 @@ spec:
       {{- end }}
       {{- end }}
       serviceAccountName: {{ template "app.serviceAccountName" . }}
-      {{ if .Values.hostNetwork }} 
+      {{ if .Values.hostNetwork }}
       hostNetwork: true
       {{- end }}
       containers:
@@ -85,4 +85,3 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
-

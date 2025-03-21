@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 0.14.0
 description: ExternalDNS - Kubernetes Services and Ingresses with DNS providers.
