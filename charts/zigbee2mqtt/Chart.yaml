@@ -1,3 +1,4 @@
+---
 apiVersion: v2
 appVersion: 1.40.2
 description: Zigbee Bridge via MQTT

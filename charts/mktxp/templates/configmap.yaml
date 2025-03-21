@@ -9,12 +9,12 @@ data:
     [app]
         port = {{ .Values.service.port }}
         socket_timeout = {{ .Values.mktxp.socketTimeout }}
-        
+
         initial_delay_on_failure = {{ .Values.mktxp.scraping.initialDelayOnFailure }}
         max_delay_on_failure = {{ .Values.mktxp.scraping.maximumDelayOnFailure }}
         delay_inc_div = {{ .Values.mktxp.scraping.delayIncrementDivision }}
 
-        bandwidth = {{ .Values.mktxp.bandwidth.enable }}                # Turns metrics bandwidth metrics collection on / off    
+        bandwidth = {{ .Values.mktxp.bandwidth.enable }}                # Turns metrics bandwidth metrics collection on / off
         bandwidth_test_interval = {{ .Values.mktxp.bandwidth.collectionInterval }}   # Interval for colllecting bandwidth metrics
         minimal_collect_interval = {{ .Values.mktxp.scraping.minimumCollectionInterval }}    # Minimal metric collection interval
 
@@ -22,9 +22,9 @@ data:
 
         fetch_routers_in_parallel = {{ .Values.mktxp.performance.threading.enable }}   # Set to True if you want to fetch multiple routers parallel
         max_worker_threads = {{ .Values.mktxp.performance.threading.maxThreads }}              # Max number of worker threads that can fetch routers. Meaningless if fetch_routers_in_parallel is set to False
-        
-        max_scrape_duration = {{ .Values.mktxp.scraping.maxSingleRouterScrapeDuration }}            # Max duration of individual routers' metrics collection 
-        total_max_scrape_duration = {{ .Values.mktxp.scraping.maxAllRouterScrapeDuration }}      # Max overall duration of all metrics collection 
+
+        max_scrape_duration = {{ .Values.mktxp.scraping.maxSingleRouterScrapeDuration }}            # Max duration of individual routers' metrics collection
+        total_max_scrape_duration = {{ .Values.mktxp.scraping.maxAllRouterScrapeDuration }}      # Max overall duration of all metrics collection
   app.conf: |
     {{- range .Values.mktxp.targets }}
     [{{ .name }}]
@@ -42,11 +42,11 @@ data:
         dhcp_lease = True               # DHCP lease metrics
 
         connections = True              # IP connections metrics
-        connection_stats = False        # Open IP connections metrics 
+        connection_stats = False        # Open IP connections metrics
 
         pool = True                     # Pool metrics
         interface = True                # Interfaces traffic metrics
-        
+
         firewall = True                 # IPv4 Firewall rules traffic metrics
         ipv6_firewall = False           # IPv6 Firewall rules traffic metrics
         ipv6_neighbor = False           # Reachable IPv6 Neighbors
@@ -59,11 +59,11 @@ data:
         wireless = True                 # WLAN general metrics
         wireless_clients = True         # WLAN clients metrics
         capsman = True                  # CAPsMAN general metrics
-        capsman_clients = True          # CAPsMAN clients metrics    
+        capsman_clients = True          # CAPsMAN clients metrics
 
         user = True                     # Active Users metrics
         queue = True                    # Queues metrics
-        
+
         remote_dhcp_entry = None        # An app entry for remote DHCP info resolution (capsman/wireless)
 
         use_comments_over_names = True  # when available, forces using comments over the interfaces names
