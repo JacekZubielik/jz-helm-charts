@@ -6,7 +6,7 @@ chart-dirs:
   - charts
 chart-repos:
   - jz-helm-charts=https://jacekzubielik.github.io/jz-helm-charts
-helm-extra-args: "--timeout 600s"  
+helm-extra-args: "--timeout 600s"
 validate-chart-schema: false
 validate-maintainers: true
 validate-yaml: true

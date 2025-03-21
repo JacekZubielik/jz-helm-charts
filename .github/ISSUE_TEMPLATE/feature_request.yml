@@ -3,7 +3,7 @@ description: Suggest an idea for this project
 title: "[name of the chart e.g. prometheus-couchdb-exporter] Issue Title"
 labels: [enhancement]
 assignees:
-  - 
+  -
 body:
   - type: markdown
     attributes:
@@ -26,7 +26,7 @@ body:
       description: A clear and concise description of what you want to happen.
     validations:
       required: true
-      
+
   - type: textarea
     id: alternatives
     attributes:
