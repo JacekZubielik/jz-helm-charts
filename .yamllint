@@ -1,11 +1,9 @@
 ---
 extends: default
-
 yaml-files:
   - '*.yaml'
   - '*.yml'
   - '.yamllint'
-
 ignore: |
   .ansible/
   .private/
@@ -16,7 +14,7 @@ ignore: |
   *secret*.*
   *secret*.y*ml
   *sops*
-
+  charts/*/templates/
 rules:
   braces:
     min-spaces-inside: 0

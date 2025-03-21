@@ -1,56 +1,56 @@
 ---
-  name: Lint and Test
-  on:
-    pull_request:
-      branches:
-      - main
-    workflow_dispatch:
+name: Lint and Test
+on:
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
 
-  jobs:
-    chart-test:
-      runs-on:
-      - ubuntu-latest
+jobs:
+  chart-test:
+    runs-on:
+    - ubuntu-latest
 
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-      - name: Set up Helm
-        uses: azure/setup-helm@v4.3.0
-        with:
-          version: v3.16.4
+    - name: Set up Helm
+      uses: azure/setup-helm@v4.3.0
+      with:
+        version: v3.16.4
 
-      - name: Set up python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-          check-latest: true
+    - name: Set up python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+        check-latest: true
 
-      - name: Setup Chart Linting
-        id: lint
-        uses: helm/chart-testing-action@v2.7.0
+    - name: Setup Chart Linting
+      id: lint
+      uses: helm/chart-testing-action@v2.7.0
 
-      - name: Chart-testing (list-changed)
-        id: list-changed
-        run: |
-          changed=$(ct --config ./.github/configs/ct-lint.yaml list-changed --target-branch ${{ github.event.repository.default_branch }})
-          charts=$(echo "$changed" | tr '\n' ' ' | xargs)
-          if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "changed_charts=$charts" >> "$GITHUB_OUTPUT"
-          fi
+    - name: Chart-testing (list-changed)
+      id: list-changed
+      run: |
+        changed=$(ct --config ./.github/configs/ct-lint.yaml list-changed --target-branch ${{ github.event.repository.default_branch }})
+        charts=$(echo "$changed" | tr '\n' ' ' | xargs)
+        if [[ -n "$changed" ]]; then
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "changed_charts=$charts" >> "$GITHUB_OUTPUT"
+        fi
 
-      - name: Chart-testing (lint)
-        run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml --target-branch ${{ github.event.repository.default_branch }}
+    - name: Chart-testing (lint)
+      run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml --target-branch ${{ github.event.repository.default_branch }}
 
-      - name: Create kind cluster
-        uses: helm/kind-action@v1.12.0
-        if: steps.list-changed.outputs.changed == 'true'
-        with:
-          config: ./.github/configs/kind-config.yaml
+    - name: Create kind cluster
+      uses: helm/kind-action@v1.12.0
+      if: steps.list-changed.outputs.changed == 'true'
+      with:
+        config: ./.github/configs/kind-config.yaml
 
-      - name: Chart-testing (install)
-        run: ct install --config ./.github/configs/ct-install.yaml
-        if: steps.list-changed.outputs.changed == 'true'
+    - name: Chart-testing (install)
+      run: ct install --config ./.github/configs/ct-install.yaml
+      if: steps.list-changed.outputs.changed == 'true'

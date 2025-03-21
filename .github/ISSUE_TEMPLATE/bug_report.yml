@@ -1,6 +1,6 @@
 # Copyright VMware, Inc.
 # SPDX-License-Identifier: APACHE-2.0
-
+---
 name: Bug
 description: Create a report to help us improve
 labels: ["tech-issues"]
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting an issue. 
+        Thank you for reporting an issue.
 
         Please fill in as much of the following form as you're able.
   - type: input
