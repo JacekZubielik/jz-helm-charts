@@ -1,7 +1,7 @@
-{{- if .Values.ingress.enabled -}} 
+{{- if .Values.ingress.enabled -}}
 {{- $fullName := include "app.fullname" . -}}
-{{- $servicePort := .Values.service.http -}} 
-{{- $ingressPath := .Values.ingress.path -}} 
+{{- $servicePort := .Values.service.http -}}
+{{- $ingressPath := .Values.ingress.path -}}
 {{- $new := false }}
 {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
 apiVersion: networking.k8s.io/v1
@@ -61,4 +61,3 @@ spec:
     {{- end }}
     {{- end }}
 {{- end }}
-
